@@ -1,6 +1,6 @@
 from logging.config import dictConfig
 
-LOGGING_CNFG = {
+LOGGING_CNFG: dict[str, int | bool | dict[str, dict[str, str]] | dict[str, dict[str, str] | dict[str, str | int]] | dict[str, dict[str, list[str] | str | bool]]] = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {

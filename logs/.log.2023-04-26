@@ -1,0 +1,1352 @@
+2023-04-26T08:37:50 [     968] WARNING : client          @__init__         #252  : PyNaCl is not installed, voice will NOT be supported
+2023-04-26T08:37:51 [      82] INFO    : client          @login            #512  : logging in using static token
+2023-04-26T08:39:01 [     545] ERROR   : client          @connect          #605  : Attempting a reconnect in 1.08s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 980, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs)  # type: ignore[return-value]  # noqa
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 1076, in create_connection
+    raise exceptions[0]
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 1060, in create_connection
+    sock = await self._connect_sock(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 969, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\proactor_events.py", line 709, in sock_connect
+    return await self._proactor.connect(sock, address)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\windows_events.py", line 826, in _poll
+    value = callback(transferred, key, ov)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\windows_events.py", line 613, in finish_connect
+    ov.getresult()
+OSError: [WinError 1231] The network location cannot be reached. For information about network troubleshooting, see Windows Help
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 331, in from_client
+    socket = await client.http.ws_connect(gateway)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 210, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 779, in _ws_connect
+    resp = await self.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1206, in _create_direct_connection
+    raise last_exc
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1175, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 988, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host gateway.discord.gg:443 ssl:default [The network location cannot be reached. For information about network troubleshooting, see Windows Help]
+2023-04-26T08:39:03 [      92] INFO    : client          @run              #712  : Cleaning up tasks.
+2023-04-26T08:39:03 [     102] INFO    : client          @_cleanup_loop    #111  : Closing the event loop.
+2023-04-26T08:43:04 [      92] WARNING : client          @__init__         #252  : PyNaCl is not installed, voice will NOT be supported
+2023-04-26T08:43:04 [     142] INFO    : client          @login            #512  : logging in using static token
+2023-04-26T08:43:20 [     294] INFO    : gateway         @identify         #430  : Shard ID None has sent the IDENTIFY payload.
+2023-04-26T08:43:24 [     356] INFO    : gateway         @received_message #524  : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-6f0w",{"micros":103794,"calls":["id_created",{"micros":855,"calls":[]},"session_lookup_time",{"micros":3409,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-128",{"micros":96783,"calls":["start_session",{"micros":45227,"calls":["discord-api-9fc4b976f-2ckxp",{"micros":39659,"calls":["get_user",{"micros":12027},"get_guilds",{"micros":4846},"send_scheduled_deletion_message",{"micros":6},"guild_join_requests",{"micros":1},"authorized_ip_coro",{"micros":10}]}]},"starting_guild_connect",{"micros":40,"calls":[]},"presence_started",{"micros":24194,"calls":[]},"guilds_started",{"micros":61,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":27207,"calls":[]},"connect_finished",{"micros":27211,"calls":[]},"build_ready",{"micros":24,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":22,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 99271e0c35574da31aa4ea6555439f30).
+2023-04-26T08:45:50 [     226] INFO    : gateway         @poll_event       #620  : Websocket closed with WSCloseCode.ABNORMAL_CLOSURE, attempting a reconnect.
+2023-04-26T08:45:50 [     227] INFO    : client          @connect          #555  : Got a request to RESUME the websocket.
+2023-04-26T08:45:50 [     233] ERROR   : client          @connect          #605  : Attempting a reconnect in 0.18s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T08:46:01 [     566] INFO    : gateway         @resume           #444  : Shard ID None has sent the RESUME payload.
+2023-04-26T08:46:41 [     534] WARNING : client          @__init__         #252  : PyNaCl is not installed, voice will NOT be supported
+2023-04-26T08:46:41 [     610] INFO    : client          @login            #512  : logging in using static token
+2023-04-26T08:46:59 [     995] INFO    : gateway         @identify         #430  : Shard ID None has sent the IDENTIFY payload.
+2023-04-26T08:47:00 [     938] INFO    : gateway         @received_message #524  : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-86td",{"micros":120421,"calls":["id_created",{"micros":1057,"calls":[]},"session_lookup_time",{"micros":311,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-176",{"micros":118279,"calls":["start_session",{"micros":72907,"calls":["discord-api-9fc4b976f-h8m4q",{"micros":66972,"calls":["get_user",{"micros":25294},"get_guilds",{"micros":7835},"send_scheduled_deletion_message",{"micros":10},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":14}]}]},"starting_guild_connect",{"micros":48,"calls":[]},"presence_started",{"micros":6961,"calls":[]},"guilds_started",{"micros":74,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":38244,"calls":[]},"connect_finished",{"micros":38249,"calls":[]},"build_ready",{"micros":19,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":19,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 0210b389a50dff34a661efaf2fe8be57).
+2023-04-26T08:54:10 [     254] INFO    : client          @run              #709  : Received signal to terminate bot and event loop.
+2023-04-26T08:54:10 [     254] INFO    : client          @run              #712  : Cleaning up tasks.
+2023-04-26T08:54:10 [     254] INFO    : client          @_cancel_tasks    #86   : Cleaning up after 1 tasks.
+2023-04-26T08:54:10 [     753] INFO    : client          @_cancel_tasks    #91   : All tasks finished cancelling.
+2023-04-26T08:54:10 [     754] INFO    : client          @_cleanup_loop    #111  : Closing the event loop.
+2023-04-26T08:54:14 [     459] WARNING : client          @__init__         #252  : PyNaCl is not installed, voice will NOT be supported
+2023-04-26T08:54:14 [     566] INFO    : client          @login            #512  : logging in using static token
+2023-04-26T08:54:15 [     466] INFO    : gateway         @identify         #430  : Shard ID None has sent the IDENTIFY payload.
+2023-04-26T08:54:15 [     953] INFO    : gateway         @received_message #524  : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-34sk",{"micros":180288,"calls":["id_created",{"micros":2480,"calls":[]},"session_lookup_time",{"micros":328,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-198",{"micros":176261,"calls":["start_session",{"micros":95794,"calls":["discord-api-9fc4b976f-bf4k9",{"micros":78078,"calls":["get_user",{"micros":17190},"get_guilds",{"micros":6417},"send_scheduled_deletion_message",{"micros":11},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":14}]}]},"starting_guild_connect",{"micros":45,"calls":[]},"presence_started",{"micros":17710,"calls":[]},"guilds_started",{"micros":88,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":62583,"calls":[]},"connect_finished",{"micros":62589,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":17,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 22e88ad849d35d321431be624088afcd).
+2023-04-26T08:57:13 [     217] WARNING : gateway         @ack              #199  : Can't keep up, shard ID None websocket is 12.7s behind.
+2023-04-26T09:04:46 [      69] WARNING : gateway         @ack              #199  : Can't keep up, shard ID None websocket is 11.7s behind.
+2023-04-26T09:45:25 [     778] WARNING : gateway         @run              #141  : Shard ID None has stopped responding to the gateway. Closing and restarting.
+2023-04-26T09:45:25 [     780] INFO    : gateway         @poll_event       #615  : Timed out receiving packet. Attempting a reconnect.
+2023-04-26T09:45:25 [     780] INFO    : client          @connect          #555  : Got a request to RESUME the websocket.
+2023-04-26T09:46:25 [     798] ERROR   : client          @connect          #605  : Attempting a reconnect in 1.41s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1175, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 980, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs)  # type: ignore[return-value]  # noqa
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 1103, in create_connection
+    transport, protocol = await self._create_connection_transport(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 1133, in _create_connection_transport
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+2023-04-26T09:46:34 [     587] ERROR   : client          @connect          #605  : Attempting a reconnect in 1.53s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T09:46:48 [     161] ERROR   : client          @connect          #605  : Attempting a reconnect in 7.20s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T09:46:55 [     394] ERROR   : client          @connect          #605  : Attempting a reconnect in 9.25s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T09:47:04 [     670] ERROR   : client          @connect          #605  : Attempting a reconnect in 25.15s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T09:47:39 [      34] ERROR   : client          @connect          #605  : Attempting a reconnect in 35.17s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T09:49:14 [     292] ERROR   : client          @connect          #605  : Attempting a reconnect in 109.93s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 331, in from_client
+    socket = await client.http.ws_connect(gateway)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 210, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 779, in _ws_connect
+    resp = await self.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1175, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 980, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs)  # type: ignore[return-value]  # noqa
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 1103, in create_connection
+    transport, protocol = await self._create_connection_transport(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 1133, in _create_connection_transport
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+2023-04-26T09:51:16 [     417] ERROR   : client          @connect          #605  : Attempting a reconnect in 10.93s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T09:51:39 [     479] ERROR   : client          @connect          #605  : Attempting a reconnect in 173.33s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T09:54:32 [     876] ERROR   : client          @connect          #605  : Attempting a reconnect in 280.53s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T09:56:54 [     193] INFO    : client          @run              #709  : Received signal to terminate bot and event loop.
+2023-04-26T09:56:54 [     194] INFO    : client          @run              #712  : Cleaning up tasks.
+2023-04-26T09:56:54 [     198] INFO    : client          @_cancel_tasks    #86   : Cleaning up after 1 tasks.
+2023-04-26T09:56:54 [     199] INFO    : client          @_cancel_tasks    #91   : All tasks finished cancelling.
+2023-04-26T09:56:54 [     208] INFO    : client          @_cleanup_loop    #111  : Closing the event loop.
+2023-04-26T10:11:24 [     192] WARNING : client          @__init__         #252  : PyNaCl is not installed, voice will NOT be supported
+2023-04-26T10:12:44 [     530] WARNING : client          @__init__         #252  : PyNaCl is not installed, voice will NOT be supported
+2023-04-26T10:13:11 [     684] WARNING : client          @__init__         #252  : PyNaCl is not installed, voice will NOT be supported
+2023-04-26T10:13:11 [     782] INFO    : client          @login            #512  : logging in using static token
+2023-04-26T10:13:28 [     720] INFO    : gateway         @identify         #430  : Shard ID None has sent the IDENTIFY payload.
+2023-04-26T10:13:31 [     342] INFO    : gateway         @received_message #524  : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-28tv",{"micros":215884,"calls":["id_created",{"micros":1359,"calls":[]},"session_lookup_time",{"micros":308,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-227",{"micros":213499,"calls":["start_session",{"micros":128479,"calls":["discord-api-9fc4b976f-62rxc",{"micros":123322,"calls":["get_user",{"micros":19311},"get_guilds",{"micros":25324},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":13}]}]},"starting_guild_connect",{"micros":45,"calls":[]},"presence_started",{"micros":297,"calls":[]},"guilds_started",{"micros":75,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":84557,"calls":[]},"connect_finished",{"micros":84561,"calls":[]},"build_ready",{"micros":19,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":21,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: a07304e65e2ee78c44833d545e2e0892).
+2023-04-26T10:16:40 [     288] INFO    : client          @run              #709  : Received signal to terminate bot and event loop.
+2023-04-26T10:16:40 [     289] INFO    : client          @run              #712  : Cleaning up tasks.
+2023-04-26T10:16:40 [     290] INFO    : client          @_cancel_tasks    #86   : Cleaning up after 1 tasks.
+2023-04-26T10:16:42 [     467] INFO    : client          @_cleanup_loop    #111  : Closing the event loop.
+2023-04-26T19:11:31 [     674] WARNING : client          @__init__         #252  : PyNaCl is not installed, voice will NOT be supported
+2023-04-26T19:11:32 [     124] INFO    : client          @login            #512  : logging in using static token
+2023-04-26T19:11:32 [     839] INFO    : gateway         @identify         #430  : Shard ID None has sent the IDENTIFY payload.
+2023-04-26T19:11:33 [      71] INFO    : gateway         @received_message #524  : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-5692",{"micros":101509,"calls":["id_created",{"micros":1104,"calls":[]},"session_lookup_time",{"micros":768,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-222",{"micros":98925,"calls":["start_session",{"micros":78397,"calls":["discord-api-84ff948f7c-fkhvs",{"micros":73860,"calls":["get_user",{"micros":11223},"get_guilds",{"micros":13924},"send_scheduled_deletion_message",{"micros":12},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":9}]}]},"starting_guild_connect",{"micros":56,"calls":[]},"presence_started",{"micros":365,"calls":[]},"guilds_started",{"micros":73,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":19992,"calls":[]},"connect_finished",{"micros":19997,"calls":[]},"build_ready",{"micros":16,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":18,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 08a3ba8041c8d8342287ff0514fc665d).
+2023-04-26T19:12:14 [     393] INFO    : client          @run              #709  : Received signal to terminate bot and event loop.
+2023-04-26T19:12:14 [     394] INFO    : client          @run              #712  : Cleaning up tasks.
+2023-04-26T19:12:14 [     395] INFO    : client          @_cancel_tasks    #86   : Cleaning up after 1 tasks.
+2023-04-26T19:12:14 [     630] INFO    : client          @_cancel_tasks    #91   : All tasks finished cancelling.
+2023-04-26T19:12:14 [     631] INFO    : client          @_cleanup_loop    #111  : Closing the event loop.
+2023-04-26T19:12:18 [     322] WARNING : client          @__init__         #252  : PyNaCl is not installed, voice will NOT be supported
+2023-04-26T19:12:18 [     460] INFO    : client          @login            #512  : logging in using static token
+2023-04-26T19:12:19 [      78] INFO    : gateway         @identify         #430  : Shard ID None has sent the IDENTIFY payload.
+2023-04-26T19:12:19 [     321] INFO    : gateway         @received_message #524  : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-mgmw",{"micros":122650,"calls":["id_created",{"micros":2686,"calls":[]},"session_lookup_time",{"micros":1579,"calls":[]},"session_lookup_finished",{"micros":18,"calls":[]},"discord-sessions-prd-2-15",{"micros":116659,"calls":["start_session",{"micros":101639,"calls":["discord-api-84ff948f7c-vd559",{"micros":80727,"calls":["get_user",{"micros":29826},"get_guilds",{"micros":5953},"send_scheduled_deletion_message",{"micros":12},"guild_join_requests",{"micros":5377},"authorized_ip_coro",{"micros":11}]}]},"starting_guild_connect",{"micros":56,"calls":[]},"presence_started",{"micros":276,"calls":[]},"guilds_started",{"micros":73,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":14565,"calls":[]},"connect_finished",{"micros":14569,"calls":[]},"build_ready",{"micros":21,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":22,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: c7b9ec886eb48a33a2033ee2b027b981).
+2023-04-26T19:24:45 [     764] INFO    : client          @run              #709  : Received signal to terminate bot and event loop.
+2023-04-26T19:24:45 [     765] INFO    : client          @run              #712  : Cleaning up tasks.
+2023-04-26T19:24:45 [     765] INFO    : client          @_cancel_tasks    #86   : Cleaning up after 1 tasks.
+2023-04-26T19:24:45 [     911] INFO    : client          @_cancel_tasks    #91   : All tasks finished cancelling.
+2023-04-26T19:24:45 [     911] INFO    : client          @_cleanup_loop    #111  : Closing the event loop.
+2023-04-26T19:37:22 [      62] WARNING : client          @__init__         #252  : PyNaCl is not installed, voice will NOT be supported
+2023-04-26T19:37:22 [     329] INFO    : client          @login            #512  : logging in using static token
+2023-04-26T19:37:22 [     941] INFO    : gateway         @identify         #430  : Shard ID None has sent the IDENTIFY payload.
+2023-04-26T19:37:23 [     170] INFO    : gateway         @received_message #524  : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-p2s2",{"micros":77682,"calls":["id_created",{"micros":1577,"calls":[]},"session_lookup_time",{"micros":3448,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-28",{"micros":71619,"calls":["start_session",{"micros":55189,"calls":["discord-api-84ff948f7c-mbz2s",{"micros":49923,"calls":["get_user",{"micros":13631},"get_guilds",{"micros":7263},"send_scheduled_deletion_message",{"micros":16},"guild_join_requests",{"micros":774},"authorized_ip_coro",{"micros":14}]}]},"starting_guild_connect",{"micros":47,"calls":[]},"presence_started",{"micros":7715,"calls":[]},"guilds_started",{"micros":75,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":8542,"calls":[]},"connect_finished",{"micros":8546,"calls":[]},"build_ready",{"micros":20,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":23,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 338d089adc26ddf9abc80f6a3cdae928).
+2023-04-26T21:50:42 [     182] INFO    : gateway         @poll_event       #615  : Timed out receiving packet. Attempting a reconnect.
+2023-04-26T21:50:42 [     182] INFO    : client          @connect          #555  : Got a request to RESUME the websocket.
+2023-04-26T21:50:42 [     182] ERROR   : client          @connect          #605  : Attempting a reconnect in 0.11s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T21:50:42 [     332] ERROR   : client          @connect          #605  : Attempting a reconnect in 2.93s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T21:50:45 [     272] ERROR   : client          @connect          #605  : Attempting a reconnect in 0.72s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T21:50:46 [      16] ERROR   : client          @connect          #605  : Attempting a reconnect in 15.25s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T21:51:01 [     282] ERROR   : client          @connect          #605  : Attempting a reconnect in 21.09s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T21:51:22 [     396] ERROR   : client          @connect          #605  : Attempting a reconnect in 34.07s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T21:51:56 [     488] ERROR   : client          @connect          #605  : Attempting a reconnect in 18.93s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T21:52:15 [     508] ERROR   : client          @connect          #605  : Attempting a reconnect in 231.66s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T21:56:07 [     282] ERROR   : client          @connect          #605  : Attempting a reconnect in 199.14s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T21:59:26 [     471] ERROR   : client          @connect          #605  : Attempting a reconnect in 324.10s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T22:42:42 [     934] ERROR   : client          @connect          #605  : Attempting a reconnect in 1.14s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T22:42:44 [      86] ERROR   : client          @connect          #605  : Attempting a reconnect in 3.58s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T22:42:47 [     690] ERROR   : client          @connect          #605  : Attempting a reconnect in 0.77s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T22:42:48 [     482] ERROR   : client          @connect          #605  : Attempting a reconnect in 12.78s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T22:43:01 [     280] ERROR   : client          @connect          #605  : Attempting a reconnect in 18.07s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T22:43:19 [     388] ERROR   : client          @connect          #605  : Attempting a reconnect in 11.78s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T22:43:31 [     207] ERROR   : client          @connect          #605  : Attempting a reconnect in 61.54s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T22:44:32 [     778] ERROR   : client          @connect          #605  : Attempting a reconnect in 250.74s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T22:48:43 [     549] ERROR   : client          @connect          #605  : Attempting a reconnect in 33.87s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]
+2023-04-26T22:49:17 [     460] ERROR   : client          @connect          #605  : Attempting a reconnect in 786.38s
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1152, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\client.py", line 550, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\gateway.py", line 330, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 2821, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\discord\http.py", line 280, in request
+    async with self.__session.request(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 1141, in __aenter__
+    self._resp = await self._coro
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\client.py", line 536, in _request
+    conn = await self._connector.connect(
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "C:\Users\aaaa\AppData\Local\Programs\Python\Python310\lib\site-packages\aiohttp\connector.py", line 1166, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host discord.com:443 ssl:default [getaddrinfo failed]

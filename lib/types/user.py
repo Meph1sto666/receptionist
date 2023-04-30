@@ -1,19 +1,22 @@
 from datetime import datetime as dt
 import os
-import pickle
+import dill
 import discord
+from lib.lang import *
 from lib.settings import *
+from lib.types.faemuinvite import FaEmuInvite
 import pytz
 
 class User:
     def __init__(self, dcUser:discord.Member|discord.User) -> None:
-        self.ID = dcUser.id
-        self.invites:list[dict[str, dt]] = []
+        self.ID: int = dcUser.id
+        self.invites:list[FaEmuInvite] = []
         self.invitePermission = True
+        # self.language:Lang = Lang()
 
     def cleanUpInvites(self) -> None:
-        now = dt.now()
-        self.invites = list(filter(lambda i: i.get("expires", now).astimezone(pytz.utc).replace(tzinfo=None) > now, self.invites))
+        now:dt = dt.now()
+        self.invites = list(filter(lambda i: i.EXPIRES_AT.astimezone(pytz.utc).replace(tzinfo=None) > now, self.invites)) # type: ignore
 
     def isLimitExceeded(self) -> bool:
         return getSetting("max_invites") < self.getInviteAmound()
@@ -23,13 +26,13 @@ class User:
         return len(self.invites)
 
     def save(self) -> None:
-        pickle.dump(self, open(getSaveFile(self.ID), "wb"))
+        dill.dump(self, open(getSaveFile(self.ID), "wb")) # type: ignore
 
 def getSaveFile(id:int) -> str:
     return os.path.abspath(f"./data/userdata/{id}.usv")
 
 def loadUser(id:int) -> User:
-    return pickle.load(open(getSaveFile(id), "rb"))
+    return dill.load(open(getSaveFile(id), "rb")) # type: ignore
 
 def getUser(member:discord.Member|discord.User) -> User:
     try:

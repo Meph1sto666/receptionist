@@ -6,7 +6,7 @@ from lib.logsetup import LOGGING_CNFG # type: ignore
 load_dotenv()
 bot = discord.Bot()
 
-intents = discord.Intents.all()
+intents: discord.Intents = discord.Intents.all()
 intents.members = True;
 
 def addExts(path:str) -> None:
@@ -14,7 +14,7 @@ def addExts(path:str) -> None:
     if os.path.isdir(path):
         for p in os.listdir(path):
             addExts(f"{path}/{p}")
-    else:
+    elif path.endswith(".py"):
         bot.load_extension(path[2:-3].replace("/", "."))
 
 addExts("./cogs")
