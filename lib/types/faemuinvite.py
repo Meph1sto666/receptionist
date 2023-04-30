@@ -1,3 +1,4 @@
+from lib.lang import *
 from datetime import datetime as dt
 import discord
 
@@ -9,13 +10,13 @@ class FaEmuInvite():
         self.MAX_USES:int = max_uses
         self.URL:str = url
     
-    def createEmbedField(self) -> discord.EmbedField:
+    def createEmbedField(self, language:Lang) -> discord.EmbedField:
         return discord.EmbedField(
             name=str(self.ID),
             value="\n".join([
-                f"**Created at**: {self.CREATED_AT.strftime('%Y-%m-%d %H:%M')}",
-                f"**Expires at**: {self.EXPIRES_AT.strftime('%Y-%m-%d %H:%M')}",
-                f"**Max uses**: {self.MAX_USES}",
-                f"**URL**: {self.URL}"
+                f"**{language.translate('created_at')}**: {self.CREATED_AT.strftime('%Y-%m-%d %H:%M')}",
+                f"**{language.translate('expires_at')}**: {self.EXPIRES_AT.strftime('%Y-%m-%d %H:%M')}",
+                f"**{language.translate('max_uses')}**: {self.MAX_USES}",
+                f"**{language.translate('url')}**: {self.URL}"
             ])
         )

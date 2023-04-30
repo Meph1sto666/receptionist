@@ -3,6 +3,7 @@ import os
 import dill
 import discord
 from lib.lang import *
+from lib.types.errors import *
 from lib.settings import *
 from lib.types.faemuinvite import FaEmuInvite
 import pytz
@@ -12,7 +13,7 @@ class User:
         self.ID: int = dcUser.id
         self.invites:list[FaEmuInvite] = []
         self.invitePermission = True
-        # self.language:Lang = Lang()
+        self.language:Lang = Lang()
 
     def cleanUpInvites(self) -> None:
         now:dt = dt.now()
@@ -34,7 +35,8 @@ def getSaveFile(id:int) -> str:
 def loadUser(id:int) -> User:
     return dill.load(open(getSaveFile(id), "rb")) # type: ignore
 
-def getUser(member:discord.Member|discord.User) -> User:
+def getUser(member:discord.Member|discord.User|None) -> User:
+    if member == None: raise UserDoesNotExist(member)
     try:
         return loadUser(member.id)
     except:
