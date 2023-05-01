@@ -1,3 +1,11 @@
 {
-    
+	"max_inv_reset_delay_setting": "Days before max invites reset",
+	"max_invites_setting": "Max invite urls",
+	"max_uses_setting": "Max users per invite (0 = unlimited)",
+	"active_invite": "Active invites",
+	"created_at": "Created at",
+	"expires_at": "Expires at",
+	"max_uses": "Max uses",
+	"url": "URL",
+	"deleted_n_invites": "Deleted {n} invites."
 }

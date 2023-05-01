@@ -6,7 +6,7 @@ LANG_FILE_EXT = ".json";
 class Lang:
 	def __init__(self, l:str="en_us") -> None:
 		self.name:str = l;
-		self.langData:dict[str, str] = json.load(open(LANG_FOLDER + self.name + LANG_FILE_EXT, "r"));
+		self.langData:dict[str, str] = json.load(open(LANG_FOLDER + self.name + LANG_FILE_EXT, "r", encoding="utf-8"));
 	
 	def __str__(self) -> str:
 		return self.name;
@@ -18,11 +18,11 @@ class Lang:
 			lName (str): language file name
 		"""
 		try:
-			self.langData = json.load(open(LANG_FOLDER + lName + LANG_FILE_EXT, "r"));
+			self.langData = json.load(open(LANG_FOLDER + lName + LANG_FILE_EXT, "r", encoding="utf-8"));
 			self.name = lName
 		except: pass;
 
-	def translate(self, key:str, translation:int=0) -> str | list[str]:
+	def translate(self, key:str, translation:int=0) -> str:
 		"""Translates the given key to the target language
 
 		Args:

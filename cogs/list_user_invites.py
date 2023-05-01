@@ -9,7 +9,7 @@ class ListInvites(commands.Cog):
 		super().__init__()
 		self.bot:discord.Bot = bot
 
-	@discord.slash_command(name="list_invites", description="lists an users invites") # type: ignore
+	@discord.slash_command(name="list_invites", description="lists a users invites") # type: ignore
 	@commands.has_role(getRole("tester"))
 	async def listUserInvites(self, ctx:discord.Message, user_id:str|None=None) -> None:
 		user:User = loadUser(int(user_id)) if user_id != None else getUser(ctx.author)

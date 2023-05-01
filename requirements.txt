@@ -1,3 +1,4 @@
+dill==0.3.6
 discord.py==2.0.1
 python-dotenv==1.0.0
-# pipreqs --encoding utf-8 "./"
+pytz==2022.5

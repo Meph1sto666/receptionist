@@ -1,0 +1,11 @@
+{
+	"max_inv_reset_delay_setting": "Dage bis das Einladungeslimit zurückgesetzt wird",
+	"max_invites_setting": "Max Einladungen",
+	"max_uses_setting": "Max Nutzungen pro Einladung (0 = unlimited)",
+	"active_invite": "Aktive Einladungen",
+	"created_at": "Erstellt am",
+	"expires_at": "Leuft ab am",
+	"max_uses": "Max nutzungen",
+	"url": "URL",
+	"deleted_n_invites": "{n} Einladungen wurden gelöscht."
+}

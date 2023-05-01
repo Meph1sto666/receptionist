@@ -17,7 +17,7 @@ class InviteClear(commands.Cog):
 		[await i.delete(reason=reason) for i in allInvs]
 		user.invites.clear()
 		user.save()
-		await ctx.respond(f"Deleted {prevLen} invites") # type: ignore
+		await ctx.respond(user.language.translate("deleted_n_invites").format(n=prevLen)) # type: ignore
 
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(InviteClear(bot))

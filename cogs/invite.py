@@ -4,6 +4,7 @@ from lib.roles import *
 from lib.types.user import *
 from lib.types.errors import *
 from lib.types.faemuinvite import FaEmuInvite
+from lib.misc import *
 
 class InviteCog(commands.Cog):
     def __init__(self, bot:discord.Bot) -> None:

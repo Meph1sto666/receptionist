@@ -4,32 +4,41 @@ from lib.roles import *
 from lib.types.user import *
 
 class InviteSettingsView(discord.ui.View):
-    def __init__(self, *items: discord.ui.Item, timeout: float | None = 180, disable_on_timeout: bool = False) -> None: # type: ignore
+    def __init__(self, *items: discord.ui.Item, timeout: float | None = 180, disable_on_timeout: bool = False, lang:Lang) -> None: # type: ignore
         super().__init__(*items, timeout=timeout, disable_on_timeout=disable_on_timeout) # type: ignore
         options:list[discord.ui.Select[discord.SelectOption]] = [ # type: ignore
             discord.ui.Select( # type: ignore
                 custom_id="period",
-                placeholder="Days before max invites reset",
+                placeholder=lang.translate("max_inv_reset_delay_setting"),
                 options=[
                     discord.SelectOption(
                         label=f"{i} days",
                         value=str(i)
                     )
                     for i in [7, 14, 21, 28, 182, 365]
-                ],
-                row=1
+                ]
             ),
             discord.ui.Select( # type: ignore
                 custom_id="max_invites",
-                placeholder="Max invite urls",
+                placeholder=lang.translate("max_invites_setting"),
                 options=[
                     discord.SelectOption(
                         label=str(i),
                         value=str(i)
                     )
                     for i in [1,2,5,10,15,20]
-                ],
-                row=2
+                ]
+            ),
+            discord.ui.Select( # type: ignore
+                custom_id="max_uses",
+                placeholder=lang.translate("max_uses_setting"),
+                options=[
+                    discord.SelectOption(
+                        label=str(i),
+                        value=str(i)
+                    )
+                    for i in [1,2,5,10,15,20,0]
+                ]
             )
         ]
         for o in options:
@@ -49,7 +58,7 @@ class InviteSettings(commands.Cog):
     @discord.slash_command(name="invite_settings", description="modify settings for invites") # type: ignore
     @commands.has_role(getRole("tester"))
     async def cInvSettings(self, ctx:discord.Message) -> None:
-        await ctx.respond(embed=createSetingsEmbed(), view=InviteSettingsView(), ephemeral=True) # type: ignore
+        await ctx.respond(embed=createSetingsEmbed(), view=InviteSettingsView(getUser(ctx.author).language), ephemeral=True) # type: ignore
         
     @cInvSettings.error # type: ignore
     async def cInvSettingsErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
