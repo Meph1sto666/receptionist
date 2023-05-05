@@ -34,8 +34,7 @@ run:
     - mkdir logs
     # run the command here
 
-
 deploy:
   stage: deploy
-  script: python app.y
+  script: python app.py
   environment: production
