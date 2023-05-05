@@ -31,10 +31,12 @@ before_script:
 run:
   script:
     - pip install -r requirements.txt
-    - mkdir logs
-    - touch logs/.log
+
 
 deploy:
   stage: deploy
-  script: python app.py
+  script: 
+    - mkdir logs
+    - touch logs/.log
+    - python app.py
   environment: production
