@@ -28,14 +28,10 @@ before_script:
   - virtualenv venv
   - source venv/bin/activate
 
-run:
-  script:
-    - pip install -r requirements.txt
-
-
 deploy:
   stage: deploy
   script: 
+    - pip install -r requirements.txt
     - mkdir logs
     - touch logs/.log
     - python app.py
