@@ -30,7 +30,7 @@ before_script:
 
 run:
   script:
-    - pip install --user -r requirements.txt
+    - pip install -r requirements.txt
     - mkdir logs
     # run the command here
 
