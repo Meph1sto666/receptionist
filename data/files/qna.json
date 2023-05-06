@@ -1,0 +1,30 @@
+[
+    {
+        "q": "project_goal_qna_q",
+        "a": "project_goal_qna_a"
+    },
+    {
+        "q": "feature_x_qna_q",
+        "a": "feature_x_qna_a"
+    },
+    {
+        "q": "working_features_qna_q",
+        "a": "working_features_qna_a"
+    },
+    {
+        "q": "why_small_lobbies_qna_q",
+        "a": "why_small_lobbies_qna_a"
+    },
+    {
+        "q": "i_have_bug_qna_q",
+        "a": "i_have_bug_qna_a"
+    },
+    {
+        "q": "can_dw_through_steam_qna_q",
+        "a": "can_dw_through_steam_qna_a"
+    },
+    {
+        "q": "can_have_src_code_qna_q",
+        "a": "can_have_src_code_qna_a"
+    }
+]

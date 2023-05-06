@@ -23,5 +23,5 @@ class FaEmuInvite():
             ],
             url=self.URL
         )
-        emb.set_footer(text=f"at least they did not read page {random.randrange(1, 100)} of the guide")
+        emb.set_footer(text=f"at least they did not read page {random.randrange(1, 100)} of the guide".upper())
         return emb
