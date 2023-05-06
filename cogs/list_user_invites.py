@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from lib.roles import *
 from lib.types.user import *
-from lib.misc import *
+# from lib.misc import *
 
 class ListInvites(commands.Cog):
 	def __init__(self, bot:discord.Bot) -> None:
@@ -13,7 +13,8 @@ class ListInvites(commands.Cog):
 	@commands.has_role(getRole("tester"))
 	async def listUserInvites(self, ctx:discord.Message, user_id:str|None=None) -> None:
 		user:User = loadUser(int(user_id)) if user_id != None else getUser(ctx.author)
-		await ctx.respond(embed=createInviteEmbed(user), ephemeral=True) # type: ignore
+		embs: list[discord.Embed] = [i.createEmbed(user.language) for i in user.invites]
+		await ctx.respond("" if len(embs) > 0 else user.language.translate("no_invites_yet"), embeds=embs, ephemeral=True) # type: ignore
 
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(ListInvites(bot))

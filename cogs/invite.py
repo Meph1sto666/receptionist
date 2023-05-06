@@ -4,7 +4,7 @@ from lib.roles import *
 from lib.types.user import *
 from lib.types.errors import *
 from lib.types.faemuinvite import FaEmuInvite
-from lib.misc import *
+# from lib.misc import *
 
 class InviteCog(commands.Cog):
     def __init__(self, bot:discord.Bot) -> None:
@@ -25,7 +25,7 @@ class InviteCog(commands.Cog):
             inv.url # type: ignore
         ))
         user.save()
-        await ctx.respond(inv.url, embed=createInviteEmbed(user)) # type: ignore
+        await ctx.respond(inv.url) # type: ignore
         
     @cInv.error # type: ignore
     async def cInvErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
