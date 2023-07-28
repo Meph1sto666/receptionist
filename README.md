@@ -1,1 +1,0 @@
-[![Quality Gate Status](https://sonar.awaly.nl/api/project_badges/measure?project=awaly_receptionist_AYmeE6FzirDzgCU6yXt5&metric=alert_status&token=sqb_99ba8fb086f64413e1e4ae2f07a138ae6aa2a7fc)](https://sonar.awaly.nl/dashboard?id=awaly_receptionist_AYmeE6FzirDzgCU6yXt5)
