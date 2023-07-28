@@ -11,7 +11,7 @@ class LangSelector(discord.ui.View):
         super().__init__(*items, timeout=timeout, disable_on_timeout=disable_on_timeout) # type: ignore
         sOption = discord.ui.Select( # type: ignore
             custom_id="lang",
-            placeholder="Select your prefferd language",
+            placeholder="Select your preferred language",
             options=[
                 discord.SelectOption(
                     label=f"{l}",
@@ -39,7 +39,7 @@ class LanguageSelectionCog(commands.Cog):
     @discord.slash_command(name="language", description="change your language") # type: ignore
     @commands.has_role(getRole("tester"))
     async def langSelect(self, ctx:discord.Message) -> None:
-        await ctx.respond(view=LangSelector()) # type: ignore
+        await ctx.respond(view=LangSelector(), ephemeral=True) # type: ignore
         
     @langSelect.error # type: ignore
     async def langSelectErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:

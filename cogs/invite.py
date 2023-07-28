@@ -14,7 +14,9 @@ class InviteCog(commands.Cog):
     @discord.slash_command(name="invite", description="create an invite link") # type: ignore
     @commands.has_role(getRole("tester"))
     async def cInv(self, ctx:discord.Message) -> None:
-        inv:discord.Invite = await ctx.channel.create_invite(max_age=604800, max_uses=1, unique=True) # type: ignore
+        # print(self.bot.is_ws_ratelimited())
+        inviteSettings = json.load(open("./data/invitesettings.json"))
+        inv:discord.Invite = await ctx.channel.create_invite(max_age=inviteSettings["period"]*(60**2*24), max_uses=inviteSettings["max_uses"], unique=True) # type: ignore
         user: User = getUser(ctx.author)
         if user.isLimitExceeded(): raise InviteLimitExceeded("limit exceeded")
         user.invites.append(FaEmuInvite(
@@ -25,7 +27,7 @@ class InviteCog(commands.Cog):
             inv.url # type: ignore
         ))
         user.save()
-        await ctx.respond(inv.url) # type: ignore
+        await ctx.respond(inv.url, ephemeral=True) # type: ignore
         
     @cInv.error # type: ignore
     async def cInvErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:

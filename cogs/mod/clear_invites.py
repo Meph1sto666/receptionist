@@ -19,5 +19,9 @@ class InviteClear(commands.Cog):
 		user.save()
 		await ctx.respond(user.language.translate("deleted_n_invites").format(n=prevLen)) # type: ignore
 
+	@delUserInvite.error # type: ignore
+	async def cInvErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
+		await ctx.respond(f"User does not exist") # type: ignore
+
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(InviteClear(bot))

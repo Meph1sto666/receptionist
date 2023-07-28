@@ -58,7 +58,7 @@ class InviteSettings(commands.Cog):
     @discord.slash_command(name="invite_settings", description="modify settings for invites") # type: ignore
     @commands.has_role(getRole("tester"))
     async def cInvSettings(self, ctx:discord.Message) -> None:
-        await ctx.respond(embed=createSetingsEmbed(), view=InviteSettingsView(getUser(ctx.author).language), ephemeral=True) # type: ignore
+        await ctx.respond(embed=createSetingsEmbed(), view=InviteSettingsView(lang=getUser(ctx.author).language), ephemeral=True) # type: ignore
         
     @cInvSettings.error # type: ignore
     async def cInvSettingsErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:

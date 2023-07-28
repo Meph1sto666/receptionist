@@ -16,5 +16,8 @@ class ListInvites(commands.Cog):
 		embs: list[discord.Embed] = [i.createEmbed(user.language) for i in user.invites]
 		await ctx.respond("" if len(embs) > 0 else user.language.translate("no_invites_yet"), embeds=embs, ephemeral=True) # type: ignore
 
+	@listUserInvites.error # type: ignore
+	async def cInvErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
+		await ctx.respond(f"User does not exist") # type: ignore
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(ListInvites(bot))
