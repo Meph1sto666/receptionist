@@ -45,11 +45,11 @@ sonarqube-check:
   only:
     - main
 
-deploy:
-  stage: deploy
-  script: 
-    - pip install -r requirements.txt
-    - mkdir logs
-    - touch logs/.log
-    - python app.py
-  environment: production
+# deploy:
+#   stage: deploy
+#   script: 
+#     - pip install -r requirements.txt
+#     - mkdir logs
+#     - touch logs/.log
+#     - python app.py
+#   environment: production
