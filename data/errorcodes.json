@@ -4,17 +4,17 @@
 			"head": "Could not spawn instance.",
 			"desc": "This typically means that you do not have the right game files."
 		},
-		"try": [
-			"You have downloaded the files from the Google Drive linked in the Getting Started guide rather than from Steam",
+		"options": [
+			"Check you have downloaded the files from the Google Drive linked in the Getting Started guide rather than from Steam",
 			"The game files and launcher are **not** on Desktop or My Documents. These locations have special permissions that can cause issues."
 		]
 	},
 	"-99": {
 		"response": {
-			"head": "Could not patch the game",
+			"head": "Could not patch the game.",
 			"desc": "The error means you have a corrupted DAT file that's downloaded from the server when you connect"
 		},
-		"try": [
+		"options": [
 			"Check if you can access https://analytics.fa-emu.com/. It runs on the game server.",
 			"Restart your PC to free up any processes accessing the files.",
 			"Add a folder wide exception for the game that tells the AV to ignore the folders where you have the launcher and game files.",
@@ -28,7 +28,7 @@
 			"head": "Got unexpected error from server.",
 			"desc": "This is typically related to network traffic being blocked."
 		},
-		"try": [
+		"options": [
 			"Check you have the latest version of the launcher from #server-status",
 			"Add m_serverIp=137.184.201.52 to the bottom of your config.ini file in the folder containing the launcher.",
 			"Check if your anti-virus is blocking the network traffic. If it is, add an exception for GAME.exe allowing the network traffic through."
@@ -39,7 +39,7 @@
 			"head": "Server is down.",
 			"desc": "If the server is not down, this is typically related to network traffic being blocked."
 		},
-		"try": [
+		"options": [
 			"Check if the Operator bot is online and use the /ping command in the #bot channel. The Operator runs on the game server so if it is down, it won't respond.",
 			"Check you have the latest version of the launcher from #server-status",
 			"Add m_serverIp=137.184.201.52 (or whatever the current address is) to the bottom of your config.ini file in the folder containing the launcher.",
@@ -51,7 +51,7 @@
 			"head": "Got unexpected error from server.",
 			"desc": "This is a network error most often seen on Fritz Boxes and Vodafone routers."
 		},
-		"try": [
+		"options": [
 			"Check if your anti-virus is blocking the network connection.",
 			"If your anti-virus is blocking the connection, add an exception for GAME.exe in your anti-virus allowing the network traffic through.",
 			"Check if your router is blocking the network connection.",
@@ -63,7 +63,7 @@
 			"head": "Could not patch the game.",
 			"desc": "The error means you have a corrupted DAT file that's downloaded from the server when you connect."
 		},
-		"try": [
+		"options": [
 			"Check if you can access https://analytics.fa-emu.com/. It runs on the game server.",
 			"Restart your PC to free up any processes accessing the files.",
 			"Add a folder wide exception for the game that tells the AV to ignore the folders where you have the launcher and game files.",

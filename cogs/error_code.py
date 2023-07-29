@@ -11,13 +11,52 @@ class ErrorCodeCog(commands.Cog):
     
     @discord.slash_command(name="error", description="helps you resolve your error message from the launcher") # type: ignore
     @commands.has_role(getRole("tester"))
-    async def errorCode(self, ctx:discord.Message) -> None:
+    async def errorCode(self, ctx:discord.Message, code:int|None=None) -> None:
         # user: User = getUser(ctx.author)
-        await ctx.respond("COPE")# type: ignore
+        errorData = json.load(open("./data/errorcodes.json"))
+        if code:
+            codeData = errorData[str(code)]
+            emb = discord.Embed(
+                title=f"{codeData['response']['head']} {'Error {e}'.format(e=code)}",
+                description=codeData["response"]["desc"],
+                fields=[
+                    discord.EmbedField(
+                        name="Option {n}".format(n=n+1),
+                        value=codeData["options"][n]
+                    ) for n in range(len(codeData["options"]))
+                ]
+            )
+            await ctx.respond(embed=emb) # type: ignore
+        else:
+            emb = discord.Embed(
+                title="Available error codes",
+                description="List of error codes you can input into the 'code' parameter of the command.",
+                fields=[
+                    discord.EmbedField(
+                        name="Error code {e}".format(e=e),
+                        value=errorData[e]["response"]["head"]
+                    ) for e in errorData
+                ]
+            )
+            await ctx.respond(embed=emb) # type: ignore
         
     @errorCode.error # type: ignore
     async def errorCodeErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
-        await ctx.respond(f"```{error.with_traceback(error.__traceback__)}```") # type: ignore
+        if error.__cause__.__class__ == KeyError:
+            errorData = json.load(open("./data/errorcodes.json"))
+            emb = discord.Embed(
+                title="Available error codes",
+                description="List of error codes you can input into the 'code' parameter of the command.",
+                fields=[
+                    discord.EmbedField(
+                        name="Error code {e}".format(e=e),
+                        value=errorData[e]["response"]["head"]
+                    ) for e in errorData
+                ]
+            )
+            await ctx.respond(embed=emb) # type: ignore
+        else:
+            await ctx.respond("COPE YOU STUPID BI***. Solve it yourself!") # type: ignore
         
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(ErrorCodeCog(bot))
