@@ -21,7 +21,10 @@ class InviteClear(commands.Cog):
 
 	@delUserInvite.error # type: ignore
 	async def cInvErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
-		await ctx.respond(f"User does not exist") # type: ignore
+		if error.__cause__.__class__ == FileNotFoundError:
+			await ctx.respond(f"User does not exist") # type: ignore
+		else:
+			await ctx.respond(f"Looks like we ran into some error. (╯°□°)╯︵ ┻━┻") # type: ignore
 
 def setup(bot:discord.Bot) -> None:
-    bot.add_cog(InviteClear(bot))
+	bot.add_cog(InviteClear(bot))

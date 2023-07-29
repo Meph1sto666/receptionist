@@ -46,7 +46,7 @@ class InviteSettingsView(discord.ui.View):
             self.add_item(o)# type: ignore
     
     async def cb(self, interaction:discord.Interaction) -> None:
-        print(interaction.data)
+        # print(interaction.data)
         setSetting(interaction.data["custom_id"], int(interaction.data["values"][0])) # type: ignore
         await interaction.response.edit_message(embed=createSetingsEmbed())
         
