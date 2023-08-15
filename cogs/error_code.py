@@ -41,7 +41,7 @@ class ErrorCodeCog(commands.Cog):
             )
             await ctx.respond(embed=emb) # type: ignore
         else:
-            await ctx.respond(embed=errorListEmb(errorData)) # type: ignore
+            await ctx.respond(embed=errorListEmb(errorData, user)) # type: ignore
         
     @errorCode.error # type: ignore
     async def errorCodeErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
