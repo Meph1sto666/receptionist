@@ -2,3 +2,4 @@ dill==0.3.6
 py-cord==2.4.1
 python-dotenv==1.0.0
 pytz==2022.5
+deep-translator

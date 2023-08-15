@@ -46,7 +46,7 @@ class InviteSettingsView(discord.ui.View):
             self.add_item(o)# type: ignore
     
     async def cb(self, interaction:discord.Interaction) -> None:
-        print(interaction.data)
+        # print(interaction.data)
         setSetting(interaction.data["custom_id"], int(interaction.data["values"][0])) # type: ignore
         await interaction.response.edit_message(embed=createSetingsEmbed())
         
@@ -56,17 +56,20 @@ class InviteSettings(commands.Cog):
         self.bot:discord.Bot = bot
     
     @discord.slash_command(name="invite_settings", description="modify settings for invites") # type: ignore
-    @commands.has_role(getRole("tester"))
+    @commands.has_any_role(*getRoles(["tester"])) # NOTE: !!!UPDATE ROLE!!!
     async def cInvSettings(self, ctx:discord.Message) -> None:
-        await ctx.respond(embed=createSetingsEmbed(), view=InviteSettingsView(getUser(ctx.author).language), ephemeral=True) # type: ignore
+        await ctx.respond(embed=createSetingsEmbed(), view=InviteSettingsView(lang=getUser(ctx.author).language), ephemeral=True) # type: ignore
         
     @cInvSettings.error # type: ignore
     async def cInvSettingsErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
-        await ctx.respond(f"```{error.with_traceback(error.__traceback__)}```", ephemeral=True) # type: ignore
+        if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
+            await ctx.respond(f"You don't have the permissions to use this command.") # type: ignore
+        else:
+            await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
         
 
 def createSetingsEmbed() -> discord.Embed:
-    data:dict[str, int] = dict(json.load(open(sPath, "r")))
+    data:dict[str, int] = dict(json.load(open(sPath, "r", encoding="utf-8")))
     embed = discord.Embed(
         color=discord.Color.from_rgb(255, 255, 255),
         title="Options",
