@@ -12,10 +12,10 @@ class InviteCog(commands.Cog):
         self.bot:discord.Bot = bot
     
     @discord.slash_command(name="invite", description="create an invite link") # type: ignore
-    @commands.has_role(getRole("tester"))
+    @commands.has_any_role(*getRoles(["tester"]))
     async def cInv(self, ctx:discord.Message) -> None:
         # print(self.bot.is_ws_ratelimited())
-        inviteSettings = json.load(open("./data/invitesettings.json"))
+        inviteSettings = json.load(open("./data/invitesettings.json", "r", encoding="utf-8"))
         inv:discord.Invite = await ctx.channel.create_invite(max_age=inviteSettings["period"]*(60**2*24), max_uses=inviteSettings["max_uses"], unique=True) # type: ignore
         user: User = getUser(ctx.author)
         if user.isLimitExceeded(): raise InviteLimitExceeded("limit exceeded")
@@ -31,7 +31,10 @@ class InviteCog(commands.Cog):
         
     @cInv.error # type: ignore
     async def cInvErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
-        await ctx.respond(f"```{error.with_traceback(error.__traceback__)}```") # type: ignore
+        if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
+            await ctx.respond(f"You don't have the permissions to use this command.") # type: ignore
+        else:
+            await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read()) # type: ignore
         
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(InviteCog(bot))

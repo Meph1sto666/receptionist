@@ -10,14 +10,20 @@ class ListInvites(commands.Cog):
 		self.bot:discord.Bot = bot
 
 	@discord.slash_command(name="list_invites", description="lists a users invites") # type: ignore
-	@commands.has_role(getRole("tester"))
+	@commands.has_any_role(*getRoles(["tester"]))
 	async def listUserInvites(self, ctx:discord.Message, user_id:str|None=None) -> None:
 		user:User = loadUser(int(user_id)) if user_id != None else getUser(ctx.author)
-		embs: list[discord.Embed] = [i.createEmbed(user.language) for i in user.invites]
+		embs:list[discord.Embed] = [i.createEmbed(user.language) for i in user.invites]
 		await ctx.respond("" if len(embs) > 0 else user.language.translate("no_invites_yet"), embeds=embs, ephemeral=True) # type: ignore
 
 	@listUserInvites.error # type: ignore
 	async def cInvErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
-		await ctx.respond(f"User does not exist") # type: ignore
+		if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
+			await ctx.respond(f"You don't have the permissions to use this command.") # type: ignore
+		elif error.__cause__.__class__ == UserDoesNotExist:
+			await ctx.respond(f"User does not exist") # type: ignore
+		else:
+			await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read()) # type: ignore
+
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(ListInvites(bot))

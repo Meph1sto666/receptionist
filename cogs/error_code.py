@@ -1,17 +1,18 @@
+import typing
 import discord
 from discord.ext import commands
 from lib.roles import *
 from lib.types.user import *
 from lib.types.errors import *
 
-def errorListEmb(errorData:dict[str, dict[str, dict[str, str] | list[str]]]) -> discord.Embed:
+def errorListEmb(errorData:typing.Any, user:User) -> discord.Embed:
     return discord.Embed(
-        title="Available error codes",
-        description="List of error codes you can input into the 'code' parameter of the command.",
+        title=user.language.translate("err_cmd_available_list"),
+        description=user.language.translate("err_cmd_available_list_desc"),
         fields=[
             discord.EmbedField(
-                name="Error code {e}".format(e=e),
-                value=str(errorData[e]["response"]["head"])
+                name=user.language.translate("err_cmd_errcode").format(e=e),
+                value=user.language.translate(errorData[e]["response"]["head"])
             ) for e in errorData
         ]
     )
@@ -22,19 +23,19 @@ class ErrorCodeCog(commands.Cog):
         self.bot:discord.Bot = bot
     
     @discord.slash_command(name="error", description="helps you resolve your error message from the launcher") # type: ignore
-    @commands.has_role(getRole("tester"))
+    @commands.has_any_role(*getRoles(["tester"]))
     async def errorCode(self, ctx:discord.Message, code:str|None=None) -> None:
-        # user: User = getUser(ctx.author)
-        errorData = json.load(open("./data/errorcodes.json"))
+        user: User = getUser(ctx.author)
+        errorData = json.load(open("./data/errorcodes.json", "r", encoding="utf-8"))
         if code:
             codeData = errorData[str(code)]
             emb = discord.Embed(
-                title=f"{codeData['response']['head']} {'Error {e}'.format(e=code)}",
-                description=codeData["response"]["desc"],
+                title=f"{user.language.translate(codeData['response']['head'])} {user.language.translate('err_cmd_errcode').format(e=code)}",
+                description=user.language.translate(codeData["response"]["desc"]),
                 fields=[
                     discord.EmbedField(
-                        name="Option {n}".format(n=n+1),
-                        value=codeData["options"][n]
+                        name=user.language.translate("err_cmd_ans_option").format(n=n+1),
+                        value=user.language.translate(codeData["options"][n])
                     ) for n in range(len(codeData["options"]))
                 ]
             )
@@ -44,11 +45,14 @@ class ErrorCodeCog(commands.Cog):
         
     @errorCode.error # type: ignore
     async def errorCodeErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
+        user: User = getUser(ctx.author)
+        # if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
+        #     await ctx.respond(f"You don't have the permissions to use this command.") # type: ignore
         if error.__cause__.__class__ == KeyError:
-            errorData = json.load(open("./data/errorcodes.json"))
-            await ctx.respond(f"Error {error.__cause__.args[0]} does not exist.", embed=errorListEmb(errorData)) # type: ignore
+            errorData = json.load(open("./data/errorcodes.json", encoding="utf-8"))
+            await ctx.respond(user.language.translate("err_cmd_errmsg_not_exist").format(ec=error.__cause__.args[0]), embed=errorListEmb(errorData, user)) # type: ignore // ec for error code (else translated by mtl raising error)
         else:
-            await ctx.respond("COPE YOU STUPID BI***. Solve it yourself!") # type: ignore
+            await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read()) # type: ignore
         
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(ErrorCodeCog(bot))

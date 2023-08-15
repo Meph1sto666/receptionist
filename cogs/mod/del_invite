@@ -9,7 +9,7 @@ class InviteClear(commands.Cog):
 		self.bot:discord.Bot = bot
 
 	@discord.slash_command(name="clear_user_invites", description="redems the users invites") # type: ignore
-	@commands.has_role(getRole("tester"))
+	@commands.has_any_role(getRole("tester"))
 	async def delUserInvites(self, ctx:discord.Message, user_id:str, reason:str|None=None) -> None:
 		user: User = loadUser(int(user_id))
 		allInvs = list(filter(lambda x: x.id in [i.ID for i in user.invites], await ctx.guild.invites())) # type: ignore

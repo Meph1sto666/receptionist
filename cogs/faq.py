@@ -10,9 +10,9 @@ class FaqCog(commands.Cog):
         self.bot:discord.Bot = bot
     
     @discord.slash_command(name="faq", description="list of frequently asked questions") # type: ignore
-    @commands.has_role(getRole("tester"))
+    @commands.has_any_role(*getRoles(["tester"]))
     async def faq(self, ctx:discord.Message) -> None:
-        faqData:list[dict[str, str]] = json.load(open("./data/files/qna.json"))
+        faqData:list[dict[str, str]] = json.load(open("./data/files/qna.json", encoding="utf-8"))
         user: User = getUser(ctx.author)
         await ctx.respond(embed=discord.Embed( # type: ignore
             color=discord.Colour.random(),
@@ -28,7 +28,10 @@ class FaqCog(commands.Cog):
 
     @faq.error # type: ignore
     async def faqErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
-        await ctx.respond(f"```{error.with_traceback(error.__traceback__)}```") # type: ignore
+        if isinstance(error, (commands.MissingRole,commands.MissingAnyRole)):
+            await ctx.respond(f"You don't have the permissions to use this command.") # type: ignore
+        else:
+            await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read()) # type: ignore
         
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(FaqCog(bot))
