@@ -1,0 +1,75 @@
+{
+	"-3": {
+		"response": {
+			"head": "errcode_-3_res_head",
+			"desc": "errcode_-3_res_desc"
+		},
+		"options": [
+			"errcode_-3_option_0",
+			"errcode_-3_option_1"
+		]
+	},
+	"-99": {
+		"response": {
+			"head": "errcode_-99_res_head",
+			"desc": "errcode_-99_res_desc"
+		},
+		"options": [
+			"errcode_-99_option_0",
+			"errcode_-99_option_1",
+			"errcode_-99_option_2",
+			"errcode_-99_option_3",
+			"errcode_-99_option_4",
+			"errcode_-99_option_5"
+		]
+	},
+	"-15": {
+		"response": {
+			"head": "errcode_-15_res_head",
+			"desc": "errcode_-15_res_desc"
+		},
+		"options": [
+			"errcode_-15_option_0",
+			"errcode_-15_option_1",
+			"errcode_-15_option_2"
+		]
+	},
+	"-13": {
+		"response": {
+			"head": "errcode_-13_res_head",
+			"desc": "errcode_-13_res_desc"
+		},
+		"options": [
+			"errcode_-13_option_0",
+			"errcode_-13_option_1",
+			"errcode_-13_option_2",
+			"errcode_-13_option_3"
+		]
+	},
+	"-16": {
+		"response": {
+			"head": "errcode_-16_res_head",
+			"desc": "errcode_-16_res_desc"
+		},
+		"options": [
+			"errcode_-16_option_0",
+			"errcode_-16_option_1",
+			"errcode_-16_option_2",
+			"errcode_-16_option_3"
+		]
+	},
+	"-98": {
+		"response": {
+			"head": "errcode_-98_res_head",
+			"desc": "errcode_-98_res_desc"
+		},
+		"options": [
+			"errcode_-98_option_0",
+			"errcode_-98_option_1",
+			"errcode_-98_option_2",
+			"errcode_-98_option_3",
+			"errcode_-98_option_4",
+			"errcode_-98_option_5"
+		]
+	}
+}

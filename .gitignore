@@ -4,3 +4,4 @@ lib/types/__pycache__/
 cogs/__pycache__/
 cogs/mod/__pycache__/
 logs/
+data/userdata/

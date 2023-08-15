@@ -7,15 +7,16 @@ from lib.types.errors import *
 from lib.lang import *
 
 class LangSelector(discord.ui.View):
-    def __init__(self, *items: list[Item], timeout: float | None = 180, disable_on_timeout: bool = False): # type: ignore
+    def __init__(self, user:User, *items: list[Item], timeout: float | None = 180, disable_on_timeout: bool = False): # type: ignore
         super().__init__(*items, timeout=timeout, disable_on_timeout=disable_on_timeout) # type: ignore
         sOption = discord.ui.Select( # type: ignore
             custom_id="lang",
-            placeholder="Select your prefferd language",
+            placeholder=user.language.translate("select_lang"),
             options=[
                 discord.SelectOption(
-                    label=f"{l}",
-                    value=str(l)
+                    label=user.language.translate(l),
+                    value=str(l),
+                    default=user.language.name==l
                 )
                 for l in getAvialLangs()
             ]
@@ -37,13 +38,17 @@ class LanguageSelectionCog(commands.Cog):
         self.bot:discord.Bot = bot
     
     @discord.slash_command(name="language", description="change your language") # type: ignore
-    @commands.has_role(getRole("tester"))
+    # @commands.has_any_role(getRole("tester"))
     async def langSelect(self, ctx:discord.Message) -> None:
-        await ctx.respond(view=LangSelector()) # type: ignore
+        user: User = getUser(ctx.author)
+        await ctx.respond(view=LangSelector(user), ephemeral=True) # type: ignore
         
     @langSelect.error # type: ignore
     async def langSelectErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
-        await ctx.respond(f"```{error.with_traceback(error.__traceback__)}```") # type: ignore
+        if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
+            await ctx.respond(f"You don't have the permissions to use this command.") # type: ignore
+        else:
+            await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read()) # type: ignore
         
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(LanguageSelectionCog(bot))

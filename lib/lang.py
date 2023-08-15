@@ -6,7 +6,7 @@ LANG_FILE_EXT = ".json";
 class Lang:
 	def __init__(self, l:str="en_us") -> None:
 		self.name:str = l;
-		self.langData:dict[str, str] = json.load(open(LANG_FOLDER + self.name + LANG_FILE_EXT, "r", encoding="utf-8"));
+		# self.langData:dict[str, str] = json.load(open(LANG_FOLDER + self.name + LANG_FILE_EXT, "r", encoding="utf-8"));
 	
 	def __str__(self) -> str:
 		return self.name;
@@ -18,7 +18,6 @@ class Lang:
 			lName (str): language file name
 		"""
 		try:
-			self.langData = json.load(open(LANG_FOLDER + lName + LANG_FILE_EXT, "r", encoding="utf-8"));
 			self.name = lName
 		except: pass;
 
@@ -32,13 +31,13 @@ class Lang:
 		Returns:
 			str: The translation or an error string eg. <en_us.test_key> (target langauge.not existing key)
 		"""
-		# return self.langData.get(key, f"<{self.name}.{key}>") if type(self.langData.get(key, []))== list and len(self.langData.get(key, [])) < 2 else self.langData.get(key)[translation];
-		if type(self.langData.get(key, None)) == list:
+		langData:dict[str, str] = json.load(open(LANG_FOLDER + self.name + LANG_FILE_EXT, "r", encoding="utf-8"));
+		if type(langData.get(key, None)) == list:
 			try:
-				return self.langData.get(key, [])[translation]
+				return langData.get(key, [])[translation]
 			except:
 				return f"<{self.name}.{key}[{translation}]>"
-		return self.langData.get(key, f"<{self.name}.{key}>");
+		return langData.get(key, f"<{self.name}.{key}>");
 
 def getAvialLangs() -> list[str]:
 	"""Returns all aviable language files from the ./data/lang/ folder

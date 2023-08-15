@@ -7,4 +7,4 @@ def getRole(role:str) -> int:
 
 def getRoles(roles:list[str]) -> list[int]:
     rData:dict[str, int] = dict(json.load(open(rolesPath)))
-    return [rData.get(r, -1) for r in roles]
+    return sum([rData.get(r, -1) for r in roles], []) # type: ignore

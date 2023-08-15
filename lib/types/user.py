@@ -1,6 +1,6 @@
 from datetime import datetime as dt
 import os
-import dill
+import dill # type: ignore
 import discord
 from lib.lang import *
 from lib.types.errors import *
