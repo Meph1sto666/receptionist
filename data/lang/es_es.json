@@ -67,5 +67,7 @@
     "errcode_-98_option_5": "Si las excepciones del cortafuegos en el antivirus no son suficientes, agregue tambi\u00e9n excepciones al enrutador.",
     "ge_de": "Alem\u00e1n",
     "en_us": "Ingl\u00e9s (Estados Unidos)",
-    "es_es": "Espa\u00f1ol"
+    "es_es": "Espa\u00f1ol",
+    "faq_title": "Preguntas frecuentes",
+    "faq_description": "Lista de preguntas frecuentes de los jugadores."
 }
