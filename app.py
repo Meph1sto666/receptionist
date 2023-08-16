@@ -4,7 +4,7 @@ from dotenv import load_dotenv # type: ignore
 from lib.logsetup import LOGGING_CNFG # type: ignore
 
 load_dotenv()
-bot = discord.Bot(activity=discord.activity.Game(name="Nothing",url="")) # GITS on FA-EMU
+bot = discord.Bot(activity=discord.activity.Game(name="/guide",url="")) # GITS on FA-EMU
 
 intents: discord.Intents = discord.Intents.all()
 intents.members = True;

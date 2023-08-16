@@ -24,12 +24,12 @@ class FaqCog(commands.Cog):
                     value=user.language.translate(k.get("a", "qna_a"))
                 ) for k in faqData
             ]
-        ))            
+        ))
 
     @faq.error # type: ignore
     async def faqErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
         if isinstance(error, (commands.MissingRole,commands.MissingAnyRole)):
-            await ctx.respond(f"You don't have the permissions to use this command.") # type: ignore
+            await ctx.respond(f"You don't have the permissions to use this command.", ephemeral=True) # type: ignore
         else:
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read()) # type: ignore
         

@@ -72,5 +72,7 @@
 
     "ge_de": "German",
     "en_us": "English (US)",
-    "es_es": "Spanish"
+    "es_es": "Spanish",
+    "faq_title": "Frequently asked questions",
+    "faq_description": "A list of the questions often asked by players."
 }

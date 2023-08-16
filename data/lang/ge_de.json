@@ -67,5 +67,7 @@
     "errcode_-98_option_5": "Wenn die Firewall-Ausnahmen auf dem AV nicht ausreichen, f\u00fcgen Sie auch Ausnahmen zum Router hinzu.",
     "ge_de": "Deutsch",
     "en_us": "Englisch (US)",
-    "es_es": "Spanisch"
+    "es_es": "Spanisch",
+    "faq_title": "Oft gestellte Fragen",
+    "faq_description": "Eine Liste der von Spielern häufig gestellten Fragen."
 }

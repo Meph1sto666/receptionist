@@ -52,7 +52,7 @@ class ErrorCodeCog(commands.Cog):
             errorData = json.load(open("./data/errorcodes.json", encoding="utf-8"))
             await ctx.respond(user.language.translate("err_cmd_errmsg_not_exist").format(ec=error.__cause__.args[0]), embed=errorListEmb(errorData, user)) # type: ignore // ec for error code (else translated by mtl raising error)
         else:
-            await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read()) # type: ignore
+            await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
         
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(ErrorCodeCog(bot))

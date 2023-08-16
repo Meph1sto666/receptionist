@@ -56,14 +56,14 @@ class InviteSettings(commands.Cog):
         self.bot:discord.Bot = bot
     
     @discord.slash_command(name="invite_settings", description="modify settings for invites") # type: ignore
-    @commands.has_any_role(*getRoles(["tester"])) # NOTE: !!!UPDATE ROLE!!!
+    @commands.has_any_role(*getRoles(["mod", "team"]))
     async def cInvSettings(self, ctx:discord.Message) -> None:
         await ctx.respond(embed=createSetingsEmbed(), view=InviteSettingsView(lang=getUser(ctx.author).language), ephemeral=True) # type: ignore
         
     @cInvSettings.error # type: ignore
     async def cInvSettingsErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
         if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
-            await ctx.respond(f"You don't have the permissions to use this command.") # type: ignore
+            await ctx.respond(f"You don't have the permissions to use this command.", ephemeral=True) # type: ignore
         else:
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
         
