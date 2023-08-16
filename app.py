@@ -21,6 +21,7 @@ addExts("./cogs")
 
 @bot.event
 async def on_ready() -> None:
+    # not used so far
     pass
 
 bot.run(token=os.getenv("TOKEN"), reconnect=True)

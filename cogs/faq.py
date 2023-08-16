@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
-from lib.roles import *
-from lib.types.user import *
-from lib.types.errors import *
+from lib.roles import getRoles
+from lib.types.user import getUser, User
+import json
 
 class FaqCog(commands.Cog):
     def __init__(self, bot:discord.Bot) -> None:
@@ -29,7 +29,7 @@ class FaqCog(commands.Cog):
     @faq.error # type: ignore
     async def faqErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
         if isinstance(error, (commands.MissingRole,commands.MissingAnyRole)):
-            await ctx.respond(f"You don't have the permissions to use this command.", ephemeral=True) # type: ignore
+            await ctx.respond("You don't have the permissions to use this command.", ephemeral=True) # type: ignore
         else:
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read()) # type: ignore
         
