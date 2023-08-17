@@ -14,4 +14,4 @@ for d in data:
     print(f"[{progress} / {len(data)}] {d}", end="\r")
     progress+=1
 
-out = json.dump(data, open(f"./{fn}.json", "w", encoding="utf-8"), indent=4)
+json.dump(data, open(f"./{fn}.json", "w", encoding="utf-8"), indent=4)
