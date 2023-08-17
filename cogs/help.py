@@ -1,13 +1,14 @@
 import discord
 from discord.ext import commands
 
-class GameFilesCmdCog(commands.Cog):
+class HelpCog(commands.Cog):
 	def __init__(self, bot:discord.Bot) -> None:
 		super().__init__()
 		self.bot:discord.Bot = bot
 	
 	@discord.slash_command(name="help", description="Commands help") # type: ignore
 	async def getGameFiles(self, ctx:discord.Message) -> None:
+		pass
 		# await ctx.respond("") # type: ignore
 		
 	@getGameFiles.error # type: ignore
@@ -18,4 +19,4 @@ class GameFilesCmdCog(commands.Cog):
 			await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
 
 def setup(bot:discord.Bot) -> None:
-	bot.add_cog(GameFilesCmdCog(bot))
+	bot.add_cog(HelpCog(bot))
