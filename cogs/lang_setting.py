@@ -1,10 +1,8 @@
 import discord
 from discord.ext import commands
 from discord.ui.item import Item
-from lib.roles import *
-from lib.types.user import *
-from lib.types.errors import *
-from lib.lang import *
+from lib.types.user import User, getUser
+from lib.lang import getAvialLangs
 
 class LangSelector(discord.ui.View):
     def __init__(self, user:User, *items: list[Item], timeout: float | None = 180, disable_on_timeout: bool = False): # type: ignore
@@ -38,7 +36,6 @@ class LanguageSelectionCog(commands.Cog):
         self.bot:discord.Bot = bot
     
     @discord.slash_command(name="language", description="change your language") # type: ignore
-    # @commands.has_any_role(getRole("tester"))
     async def langSelect(self, ctx:discord.Message) -> None:
         user: User = getUser(ctx.author)
         await ctx.respond(view=LangSelector(user), ephemeral=True) # type: ignore
@@ -46,7 +43,7 @@ class LanguageSelectionCog(commands.Cog):
     @langSelect.error # type: ignore
     async def langSelectErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
         if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
-            await ctx.respond(f"You don't have the permissions to use this command.", ephemeral=True) # type: ignore
+            await ctx.respond("You don't have the permissions to use this command.", ephemeral=True) # type: ignore
         else:
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
         

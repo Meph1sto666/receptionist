@@ -1,9 +1,9 @@
 import typing
 import discord
 from discord.ext import commands
-from lib.roles import *
-from lib.types.user import *
-from lib.types.errors import *
+from lib.roles import getRoles
+from lib.types.user import getUser, User
+import json
 
 def errorListEmb(errorData:typing.Any, user:User) -> discord.Embed:
     return discord.Embed(
@@ -46,7 +46,6 @@ class ErrorCodeCog(commands.Cog):
     @errorCode.error # type: ignore
     async def errorCodeErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
         user: User = getUser(ctx.author)
-        # if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
         #     await ctx.respond(f"You don't have the permissions to use this command.") # type: ignore
         if error.__cause__.__class__ == KeyError:
             errorData = json.load(open("./data/errorcodes.json", encoding="utf-8"))
