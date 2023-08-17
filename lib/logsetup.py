@@ -1,6 +1,14 @@
 from logging.config import dictConfig
+import os
 
-LOGGING_CNFG: dict[str, int | bool | dict[str, dict[str, str]] | dict[str, dict[str, str] | dict[str, str | int]] | dict[str, dict[str, list[str] | str | bool]]] = {
+# Generate required directory and file for logging config.
+os.makedirs(os.path.dirname('logs'), exist_ok=True)
+if not os.path.exists('logs/.log'):
+    open('logs/.log', 'w').close()
+
+LOGGING_CNFG: dict[
+    str, int | bool | dict[str, dict[str, str]] | dict[str, dict[str, str] | dict[str, str | int]] | dict[
+        str, dict[str, list[str] | str | bool]]] = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
