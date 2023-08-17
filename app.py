@@ -4,10 +4,10 @@ from dotenv import load_dotenv # type: ignore
 from lib.logsetup import LOGGING_CNFG # type: ignore
 
 load_dotenv()
-bot = discord.Bot(activity=discord.activity.Game(name="/guide",url="")) # GITS on FA-EMU
-
 intents: discord.Intents = discord.Intents.all()
 intents.members = True;
+
+bot = discord.Bot(activity=discord.activity.Game(name="/guide",url=""), intents=intents) # GITS on FA-EMU
 
 def addExts(path:str) -> None:
     if "__pycache__" in path: return
