@@ -1,7 +1,6 @@
 import os
 import discord
-from dotenv import load_dotenv # type: ignore
-from lib.logsetup import LOGGING_CNFG # type: ignore
+from dotenv import load_dotenv  # type: ignore
 
 load_dotenv()
 intents: discord.Intents = discord.Intents.all()
