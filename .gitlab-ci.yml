@@ -56,7 +56,7 @@ image-build:
      - podman login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
    script:
      - podman build -t $IMAGE_TAG .
-     - podman push $IMAGE_TAG
+     - podman push $IMAGE_TAG $CI_REGISTRY
    only:
      - main
 # deploy:
