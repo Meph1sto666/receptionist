@@ -5,6 +5,7 @@ COPY app.py /app/
 COPY assets /app/assets
 COPY cogs /app/cogs
 COPY lib /app/lib
+COP data /app/data
 COPY requirements.txt /app/
 
 RUN pip install -r requirements.txt
