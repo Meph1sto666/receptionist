@@ -54,7 +54,7 @@ image-build:
    image: quay.io/podman/stable:latest
    script:
      - podman login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-     - podman --storage-opt mount_program=/usr/bin/fuse-overlayfs --storage-opt ignore_chown_errors=true build --device=/dev/fuse -t $IMAGE_TAG .
+     - podman --storage-opt mount_program=/usr/bin/fuse-overlayfs --storage-opt ignore_chown_errors=true build --device=/dev/fuse:/dev/fuse:rwm -t $IMAGE_TAG .
      - podman push $IMAGE_TAG
    only:
      - main
