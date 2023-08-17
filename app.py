@@ -1,7 +1,9 @@
 import os
 import discord
 from dotenv import load_dotenv  # type: ignore
+from lib.logsetup import init_log
 
+init_log()
 load_dotenv()
 intents: discord.Intents = discord.Intents.all()
 intents.members = True;
