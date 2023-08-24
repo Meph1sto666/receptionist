@@ -90,7 +90,7 @@ deploy:
     - chmod 644 ~/.ssh/known_hosts
     - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id
   script:
-    - ssh -i ~/.ssh/id -T "$SSH_USER@$SSH_HOST"
+    - ssh -A -T "$SSH_USER@$SSH_HOST"
     - systemctl --user start podman-auto-update.service
   only: 
     - main
