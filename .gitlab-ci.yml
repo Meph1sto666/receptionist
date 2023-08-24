@@ -19,6 +19,7 @@
 
 stages:
   - test
+  - build
   - deploy
 
 sonarqube-check:
@@ -39,10 +40,9 @@ sonarqube-check:
   only:
     - main
 
-deploy:
-   stage: deploy
+build:
+   stage: build
    image: quay.io/podman/stable:latest
-   environment: production
    before_script:
      - podman login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
    script:
@@ -50,3 +50,37 @@ deploy:
      - podman push $IMAGE_TAG $CI_PUSH_URL
    only:
      - main
+
+deploy:
+  stage: deploy
+  image: docker.io/debian:stable
+  before_script:
+    ##
+    ## Install ssh-agent if not already installed, it is required by Docker.
+    ## (change apt-get to yum if you use an RPM-based image)
+    ##
+    - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    ##
+    ## Run ssh-agent (inside the build environment)
+    ##
+    - eval $(ssh-agent -s)
+
+    ##
+    ## Give the right permissions, otherwise ssh-add will refuse to add files
+    ## Add the SSH key stored in SSH_PRIVATE_KEY file type CI/CD variable to the agent store
+    ##
+    - chmod 400 "$SSH_PRIVATE_KEY"
+    - ssh-add "$SSH_PRIVATE_KEY"
+
+    ##
+    ## Create the SSH directory and give it the right permissions
+    ##
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+  script:
+    - ssh $PROD_SSH
+    - systemctl --user start podman-auto-update.service
+  only: 
+    - main
+
