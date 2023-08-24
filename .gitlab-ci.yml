@@ -54,6 +54,7 @@ build:
 deploy:
   stage: deploy
   image: docker.io/debian:stable
+  environment: production
   before_script:
     ##
     ## Install ssh-agent if not already installed, it is required by Docker.
