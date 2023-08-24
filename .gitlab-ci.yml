@@ -16,20 +16,10 @@
 #
 # If you want to also cache the installed packages, you have to install
 # them in a virtualenv and cache it as well.
-# cache:
-#   paths:
-#     - .cache/pip
-#     - venv/
-
-# before_script:
-#   - python --version ; pip --version  # For debugging
-#   - pip install virtualenv
-#   - virtualenv venv
-#   - source venv/bin/activate
 
 stages:
   - test
-  - build
+  - deploy
 
 sonarqube-check:
   stage: test
@@ -49,9 +39,10 @@ sonarqube-check:
   only:
     - main
 
-image-build:
-   stage: build
+deploy:
+   stage: deploy
    image: quay.io/podman/stable:latest
+   environment: production
    before_script:
      - podman login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
    script:
@@ -59,11 +50,3 @@ image-build:
      - podman push $IMAGE_TAG $CI_PUSH_URL
    only:
      - main
-# deploy:
-#   stage: deploy
-#   script: 
-#     - pip install -r requirements.txt
-#     - mkdir logs
-#     - touch logs/.log
-#     - python app.py
-#   environment: production
