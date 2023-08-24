@@ -69,14 +69,6 @@ deploy:
 
     - chmod 600 /builds/awaly/receptionist.tmp/SSH_PRIVATE_KEY
 
-    #    ##
-    # ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
-    # ## We're using tr to fix line endings which makes ed25519 keys work
-    # ## without extra base64 encoding.
-    # ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
-    # ##
-    # # - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    # - echo "${SSH_PRIVATE_KEY}" | ssh-add -
     - ssh-add $SSH_PRIVATE_KEY
     ## Create the SSH directory and give it the right permissions
     ##
@@ -90,9 +82,12 @@ deploy:
     ##
     - ssh-keyscan $SSH_HOST >> /root/.ssh/known_hosts
     - chmod 644 /root/.ssh/known_hosts
-    # - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id
+    - touch deploy.sh
+    - echo "podman image pull gitlab.awaly.nl:5050/awaly/receptionist:latest" >> deploy.sh
+    - echo "systemctl --user restart container-receptionist.service" >> deploy.sh
   script:
-    - ssh -i /builds/awaly/receptionist.tmp/SSH_PRIVATE_KEY -l $SSH_USER -T $SSH_HOST systemctl --user start podman-auto-update.service
+    - 
+    - ssh -i /builds/awaly/receptionist.tmp/SSH_PRIVATE_KEY -l $SSH_USER -T $SSH_HOST 'bash -s' < deploy.sh
   only: 
     - main
 
