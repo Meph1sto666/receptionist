@@ -92,7 +92,7 @@ deploy:
     - chmod 644 ~/.ssh/known_hosts
     # - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id
   script:
-    - ssh -i /builds/awaly/receptionist.tmp/SSH_PRIVATE_KEY -T "$SSH_USER"@"$SSH_HOST"
+    - ssh -v -i /builds/awaly/receptionist.tmp/SSH_PRIVATE_KEY -l $SSH_USER -T $SSH_HOST
     - systemctl --user start podman-auto-update.service
   only: 
     - main
