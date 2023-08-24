@@ -67,14 +67,14 @@ deploy:
     ##
     - eval $(ssh-agent -s)
 
-       ##
-    ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
-    ## We're using tr to fix line endings which makes ed25519 keys work
-    ## without extra base64 encoding.
-    ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
-    ##
-    # - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - echo "${SSH_PRIVATE_KEY}" | ssh-add -
+    #    ##
+    # ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+    # ## We're using tr to fix line endings which makes ed25519 keys work
+    # ## without extra base64 encoding.
+    # ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+    # ##
+    # # - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    # - echo "${SSH_PRIVATE_KEY}" | ssh-add -
     ##
     ## Create the SSH directory and give it the right permissions
     ##
@@ -88,9 +88,9 @@ deploy:
     ##
     - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
-    - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id
+    # - echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id
   script:
-    - ssh -A -T "$SSH_USER@$SSH_HOST"
+    - ssh -i $SSH_PRIVATE_KEY -T "$SSH_USER@$SSH_HOST"
     - systemctl --user start podman-auto-update.service
   only: 
     - main
