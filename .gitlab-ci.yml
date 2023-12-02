@@ -84,7 +84,7 @@ deploy:
     - chmod 644 /root/.ssh/known_hosts
     - touch deploy.sh
     - echo "podman image pull gitlab.awaly.nl:5050/awaly/receptionist:latest" >> deploy.sh
-    - echo "systemctl --user restart container-receptionist.service" >> deploy.sh
+    - echo "systemctl --user restart receptionist.service" >> deploy.sh
   script:
     - ssh -i /builds/awaly/receptionist.tmp/SSH_PRIVATE_KEY -l $SSH_USER -T $SSH_HOST 'bash -s' < deploy.sh
   only: 
