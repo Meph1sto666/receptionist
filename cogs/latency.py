@@ -16,7 +16,12 @@ class LatencyCog(commands.Cog):
         
     @cInv.error # type: ignore
     async def cInvErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
-        await ctx.respond(f"```{error.with_traceback(error.__traceback__)}```") # type: ignore
+        if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
+            await ctx.respond("You don't have the permissions to use this command.", ephemeral=True) # type: ignore
+        elif error.__cause__.__class__ == UserDoesNotExist:
+            await ctx.respond("User does not exist") # type: ignore
+        else:
+            await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
         
 def setup(bot:discord.Bot) -> None:
     bot.add_cog(LatencyCog(bot))

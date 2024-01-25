@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from lib.roles import getRoles
 from lib.types.user import User, getUser
-from lib.types.errors import InviteLimitExceeded
+from lib.types.errors import InviteLimitExceeded, UserDoesNotExist
 from lib.types.faemuinvite import FaEmuInvite
 import json
 
@@ -33,6 +33,8 @@ class InviteCog(commands.Cog):
     async def cInvErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
         if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
             await ctx.respond("You don't have the permissions to use this command.", ephemeral=True) # type: ignore
+        elif error.__cause__.__class__ == UserDoesNotExist:
+            await ctx.respond("User does not exist") # type: ignore
         else:
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
         

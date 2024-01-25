@@ -14,7 +14,7 @@ class RoleChartCog(commands.Cog):
 		self.bot:discord.Bot = bot
 
 	@discord.slash_command(name="role_chart", description="Pie chart showing the role distribution") # type: ignore
-	@commands.has_any_role(*getRoles(["tester"]))
+	@commands.has_any_role(*getRoles(["team"]))
 	async def roleChart(self, ctx:discord.Message) -> None:
 		await ctx.guild.chunk() # type: ignore
 		roles:list[discord.Role]|None = None if ctx.guild == None else sorted(list(filter(lambda x: x.name != "@everyone" or len(x.members)<1, ctx.guild.roles)), key=lambda s: len(s.members), reverse=True)
