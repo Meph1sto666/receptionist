@@ -1,9 +1,10 @@
 import discord
 from discord.ext import commands
 from lib.roles import getRoles
-from lib.settings import sPath
+from lib.settings import sPath, setSetting
 from lib.lang import Lang
 import json
+from lib.types.user import getUser
 
 class InviteSettingsView(discord.ui.View):
     def __init__(self, *items: discord.ui.Item, timeout: float | None = 180, disable_on_timeout: bool = False, lang:Lang) -> None: # type: ignore

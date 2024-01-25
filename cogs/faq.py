@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from lib.roles import getRoles
+from lib.types.errors import UserDoesNotExist
 from lib.types.user import getUser, User
 import json
 
@@ -30,6 +31,8 @@ class FaqCog(commands.Cog):
     async def faqErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
         if isinstance(error, (commands.MissingRole,commands.MissingAnyRole)):
             await ctx.respond("You don't have the permissions to use this command.", ephemeral=True) # type: ignore
+        elif error.__cause__.__class__ == UserDoesNotExist:
+            await ctx.respond("User/Guide does not exist") # type: ignore
         else:
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read()) # type: ignore
         
