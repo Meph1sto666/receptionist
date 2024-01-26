@@ -16,7 +16,8 @@ class SetActivity(commands.Cog):
 			discord.activity.Game("Post bugs in bug-report"),
 			discord.activity.Game("crashing the server"),
 			discord.activity.Game("do grenades work?"),
-			discord.activity.Game("riding tachikomas :tachikomalove:")
+			discord.activity.Game("riding Tachikomas <3"),
+			discord.activity.Game("with grenades")
 		]
 		self.modes:dict[str, tasks.Loop] = {
 			'roles': self.roleMode,
