@@ -51,7 +51,7 @@ class InviteSettingsView(discord.ui.View):
     async def cb(self, interaction:discord.Interaction) -> None:
         # print(interaction.data)
         setSetting(interaction.data["custom_id"], int(interaction.data["values"][0])) # type: ignore
-        await interaction.response.edit_message(embed=createSetingsEmbed())
+        await interaction.response.edit_message(embed=createSettingsEmbed())
         
 class InviteSettings(commands.Cog):
     def __init__(self, bot:discord.Bot) -> None:
@@ -61,7 +61,7 @@ class InviteSettings(commands.Cog):
     @discord.slash_command(name="invite_settings", description="modify settings for invites") # type: ignore
     @commands.has_any_role(*getRoles(["mod", "team"]))
     async def cInvSettings(self, ctx:discord.Message) -> None:
-        await ctx.respond(embed=createSetingsEmbed(), view=InviteSettingsView(lang=getUser(ctx.author).language), ephemeral=True) # type: ignore
+        await ctx.respond(embed=createSettingsEmbed(), view=InviteSettingsView(lang=getUser(ctx.author).language), ephemeral=True) # type: ignore
         
     @cInvSettings.error # type: ignore
     async def cInvSettingsErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
@@ -71,7 +71,7 @@ class InviteSettings(commands.Cog):
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
         
 
-def createSetingsEmbed() -> discord.Embed:
+def createSettingsEmbed() -> discord.Embed:
     data:dict[str, int] = dict(json.load(open(sPath, "r", encoding="utf-8")))
     embed = discord.Embed(
         color=discord.Color.from_rgb(255, 255, 255),

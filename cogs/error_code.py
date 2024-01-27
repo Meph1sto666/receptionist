@@ -22,7 +22,7 @@ class ErrorCodeCog(commands.Cog):
         super().__init__()
         self.bot:discord.Bot = bot
     
-    @discord.slash_command(name="error", description="helps you resolve your error message from the launcher") # type: ignore
+    @discord.slash_command(name="error", description="helps you resolve error messages thrown by the launcher") # type: ignore
     @commands.has_any_role(*getRoles(["tester"]))
     async def errorCode(self, ctx:discord.Message, code:str|None=None) -> None:
         user: User = getUser(ctx.author)
