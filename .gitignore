@@ -5,3 +5,4 @@ cogs/__pycache__/
 cogs/mod/__pycache__/
 logs/
 data/userdata/
+/venv
