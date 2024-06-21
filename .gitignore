@@ -6,3 +6,4 @@ cogs/mod/__pycache__/
 logs/
 data/userdata/
 /venv
+receptionist.db
