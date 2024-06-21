@@ -1,5 +1,7 @@
-py-cord==2.4.1
+dill==0.3.6
+py-cord==2.5.0
 python-dotenv==1.0.0
 pytz==2022.5
 deep-translator
-matplotlib
+matplotlib~=3.9.0
+peewee
