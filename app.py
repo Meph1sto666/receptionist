@@ -7,29 +7,35 @@ from lib.types.user import delUser
 init_log()
 load_dotenv()
 intents: discord.Intents = discord.Intents.all()
-intents.members = True;
+intents.members = True
 
-bot = discord.Bot(activity=discord.activity.Game(name="/guide",url=""), intents=intents) # GITS on FA-EMU
+bot = discord.Bot(activity=discord.activity.Game(name="/guide", url=""), intents=intents)  # GITS on FA-EMU
 
-def addExts(path:str) -> None:
-    if "__pycache__" in path: return
+
+def add_exts(path: str) -> None:
+    if "__pycache__" in path:
+        return
     if os.path.isdir(path):
         for p in os.listdir(path):
-            addExts(f"{path}/{p}")
+            add_exts(f"{path}/{p}")
     elif path.endswith(".py"):
         bot.load_extension(path[2:-3].replace("/", "."))
 
-addExts("./cogs")
+
+add_exts("./cogs")
+
 
 @bot.event
 async def on_ready() -> None:
     # not used so far
     pass
 
+
 @bot.event
-async def on_member_remove(member:discord.Member) -> None:
-    "deletes user file in ./data/userdata/ when leaving server"
+async def on_member_remove(member: discord.Member) -> None:
+    """deletes user file in ./data/userdata/ when leaving server"""
     delUser(member.id)
+
 
 if __name__ == '__main__':
     print(os.getenv("TOKEN"))
