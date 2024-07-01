@@ -32,7 +32,7 @@ class ErrorCodeCog(commands.Cog):
                            description="helps you resolve error messages thrown by the launcher")  # type: ignore
     @commands.has_any_role(*getRoles(["tester"]))
     async def errorCode(self, ctx: discord.Message, code: str | None = None) -> None:
-        user: User = User.get_by_id(ctx.author.id)
+        user: User = User.get_or_create(id=ctx.author.id)[0]
         errorData = json.load(open("./data/errorcodes.json", "r", encoding="utf-8"))
         if code:
             codeData = errorData[str(code)]
@@ -54,7 +54,7 @@ class ErrorCodeCog(commands.Cog):
 
     @errorCode.error  # type: ignore
     async def errorCodeErr(self, ctx: discord.Message, error: discord.ApplicationCommandError) -> None:
-        user: User = User.get_by_id(ctx.author.id)
+        user: User = User.get_or_create(id=ctx.author.id)[0]
         #     await ctx.respond(f"You don't have the permissions to use this command.") # type: ignore
         if error.__cause__.__class__ == KeyError:
             errorData = json.load(open("./data/errorcodes.json", encoding="utf-8"))

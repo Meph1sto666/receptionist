@@ -18,10 +18,10 @@ class BaseModel(Model):
 
 class User(BaseModel):
     id = IntegerField(primary_key=True)
-    timezone = IntegerField()
-    invite_permission = BooleanField()
-    allow_ping = BooleanField()
-    language = TextField()
+    timezone = IntegerField(default=0)
+    invite_permission = BooleanField(default=True)
+    allow_ping = BooleanField(default=False)
+    language = TextField(default="en_us")
 
     def get_mention_str(self) -> str:
         """returns the user mention string <@discord_user_id>"""
@@ -46,15 +46,15 @@ class Invite(BaseModel):
             color=discord.Colour.random(),
             timestamp=dt.now(),
             fields=[
-                discord.EmbedField(name=language.translate('created_at'),
-                                   value=f"{self.created_at.year}-{self.created_at.month}-{self.created_at.day}"
-                                         f" {self.created_at.hour}:{self.created_at.minute}", inline=True),
-                discord.EmbedField(name=language.translate('expires_at'),
-                                   value=f"{self.expires_at.year}-{self.expires_at.month}-{self.expires_at.day}"
-                                         f" {self.expires_at.hour}:{self.expires_at.minute}", inline=True),
+                discord.EmbedField(name=language.translate('created_at'), value = self.created_at, inline=True),
+                                #    value=f"{self.created_at.year}-{self.created_at.month}-{self.created_at.day}"
+                                #          f" {self.created_at.hour}:{self.created_at.minute}"
+                discord.EmbedField(name=language.translate('expires_at'), value = self.expires_at, inline=True),
+                                #    value=f"{self.expires_at.year}-{self.expires_at.month}-{self.expires_at.day}"
+                                #          f" {self.expires_at.hour}:{self.expires_at.minute}"
                 discord.EmbedField(name=language.translate('max_uses'), value=str(self.max_uses), inline=True)
             ],
-            url=self.URL
+            url=self.url
         )
         emb.set_footer(text=f"at least they did not read page {random.randrange(1, 100)} of the guide".upper())
         return emb

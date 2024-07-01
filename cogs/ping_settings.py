@@ -158,7 +158,7 @@ class PingSettingsCog(commands.Cog):
     @discord.slash_command(name="ping_settings", description="settings for lobby pings")  # type: ignore
     @commands.has_any_role(*getRoles(["tester"]))
     async def lobbyPingSettings(self, ctx: discord.ApplicationContext) -> None:
-        user: User = User.get_by_id(ctx.author.id)
+        user: User = User.get_or_create(id=ctx.author.id)[0]
         await ctx.respond(embed=generateRulesEmbedded(user), view=PingSettingsView(user),
                           ephemeral=True)  # type: ignore
         user.save()
@@ -167,13 +167,13 @@ class PingSettingsCog(commands.Cog):
 def generateRulesEmbedded(user: User) -> discord.Embed:
     # user:User = loadUser(userId)
     emb: discord.Embed = discord.Embed(
-        color=discord.colour.Color.from_rgb(*(0, 255, 0) if user.allowPing else (255, 0, 0)),
+        color=discord.colour.Color.from_rgb(*(0, 255, 0) if user.allow_ping else (255, 0, 0)),
         title='(test)// ping rules',
         description='rules for incoming lobby ping requests. You can disable them or specify times to receive pings',
         timestamp=dt.now(),
         fields=[]
     )
-    emb.set_footer(text=f'(test)// receive lobby pings: {user.allowPing}')
+    emb.set_footer(text=f'(test)// receive lobby pings: {user.allow_ping}')
     for i in range(len(user.allowedPingTimes)):
         emb.add_field(
             name=f'(test)// Rule {i}',

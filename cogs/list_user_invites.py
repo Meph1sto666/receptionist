@@ -17,13 +17,12 @@ class ListInvites(commands.Cog):
 	@commands.has_any_role(*getRoles(["tester"]))
 	async def listUserInvites(self, ctx: discord.Message, user_id: str | None = None) -> None:
 		try:
-			user: User = User.get_by_id(int(user_id))
-			invites = Invite.select().where(Invite.user_id == user.id)
-			embs: list[discord.Embed] = [i.createEmbed(user.language) for i in invites]
-			language = Lang()
+			user: User = User.get_or_create(id=int(user_id or ctx.author.id))[0]
+			invites:list[Invite] = list(Invite.select().where(Invite.user_id == user.id))
+			language:Lang = Lang()
 			language.loadLanguage(user.language)
-			await ctx.respond("" if len(embs) > 0 else language.translate("no_invites_yet"), embeds=embs,
-							  ephemeral=True)  # type: ignore
+			embs: list[discord.Embed] = [i.create_embed(language) for i in invites]
+			await ctx.respond("" if len(embs) > 0 else language.translate("no_invites_yet"), embeds=embs, ephemeral=True)  # type: ignore
 		except DoesNotExist:
 			await ctx.respond(Lang().translate("no_invites_yet"), embeds=None, ephemeral=True)
 

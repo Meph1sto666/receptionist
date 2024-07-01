@@ -17,7 +17,7 @@ class FaqCog(commands.Cog):
     @commands.has_any_role(*getRoles(["tester"]))
     async def faq(self, ctx: discord.Message) -> None:
         faqData: list[dict[str, str]] = json.load(open("./data/files/qna.json", encoding="utf-8"))
-        user: User = User.get_by_id(ctx.author.id)
+        user: User = User.get_or_create(id=ctx.author.id)[0]
         language = Lang()
         language.loadLanguage(user.language)
         await ctx.respond(embed=discord.Embed(  # type: ignore

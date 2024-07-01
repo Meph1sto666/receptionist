@@ -18,7 +18,7 @@ class GuideCmdCog(commands.Cog):
     async def getGuide(self, ctx: discord.Message) -> None:
         await ctx.defer()  # type: ignore
         language = Lang()
-        language.loadLanguage(User.get_by_id(ctx.author.id).language)
+        language.loadLanguage(User.get_or_create(id=ctx.author.id)[0].language)
         guidePath: str = f'./data/files/gitsfaemusgv21_{language.name}.pdf'
         await ctx.respond(
             "https://docs.google.com/document/d/e/2PACX-1vTi0s72Cj-ExFSzDxO8lLtzR83zbeMuhlq_1NVQD27BM2B8OeZYellszk7rhdSQkV4jPu-b3m3giXHf/pub",
@@ -30,7 +30,7 @@ class GuideCmdCog(commands.Cog):
     async def getGuide(self, ctx: discord.Message) -> None:
         await ctx.defer()  # type: ignore
         language = Lang()
-        language.loadLanguage(User.get_by_id(ctx.author.id).language)
+        language.loadLanguage(User.get_or_create(id=ctx.author.id)[0].language)
         guidePath: str = f'./data/files/gitsfaemusgv21_{language.name}.pdf'
         await ctx.respond(
             "https://docs.google.com/document/d/e/2PACX-1vTi0s72Cj-ExFSzDxO8lLtzR83zbeMuhlq_1NVQD27BM2B8OeZYellszk7rhdSQkV4jPu-b3m3giXHf/pub",

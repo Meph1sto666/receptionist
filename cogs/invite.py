@@ -23,7 +23,7 @@ class InviteCog(commands.Cog):
                                                               unique=True)  # type: ignore
         user: User
         try:
-            user: User = User.get_by_id(ctx.author.id)
+            user: User = User.get_or_create(id=ctx.author.id)[0]
         except DoesNotExist:
             # Create new user.
             user = User(id=ctx.author.id, timezone=0, invite_permission=True, allow_ping=False,
@@ -33,14 +33,17 @@ class InviteCog(commands.Cog):
         if user.is_limit_exceeded():
             raise InviteLimitExceeded("limit exceeded")
 
+        print()
+
         invite = Invite(
-            id=inv.id,  # type: ignore
-            created_at=inv.created_at,  # type: ignore
+            id=inv.id,
+            created_at=inv.created_at,
             expires_at=inv.expires_at,  # type: ignore
             max_uses=inv.max_uses,  # type: ignore
             url=inv.url,  # type: ignore
             user_id=user.id
         )
+        print(invite.__dict__)
         invite.save(force_insert=True)
 
         await ctx.respond(inv.url, ephemeral=True)  # type: ignore

@@ -1,9 +1,6 @@
 .env
-lib/__pycache__/
-lib/types/__pycache__/
-cogs/__pycache__/
-cogs/mod/__pycache__/
+__pycache__
 logs/
 data/userdata/
-/venv
+venv
 receptionist.db

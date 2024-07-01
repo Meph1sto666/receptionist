@@ -1,17 +1,18 @@
 import json
-import os;
+import os
+import peewee
 LANG_FOLDER:str = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/data/lang/";
 LANG_FILE_EXT = ".json";
 
 class Lang:
 	def __init__(self, l:str="en_us") -> None:
-		self.name:str = l;
+		self.name:peewee.TextField|str = l;
 		# self.langData:dict[str, str] = json.load(open(LANG_FOLDER + self.name + LANG_FILE_EXT, "r", encoding="utf-8"));
 	
 	def __str__(self) -> str:
-		return self.name;
+		return str(self.name)
 	
-	def loadLanguage(self, lName:str) -> None:
+	def loadLanguage(self, lName:peewee.TextField|str) -> None:
 		"""Loads a language
 
 		Args:

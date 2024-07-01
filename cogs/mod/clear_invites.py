@@ -14,7 +14,7 @@ class InviteClear(commands.Cog):
     @discord.slash_command(name="clear_user_invites", description="prunes the users invites")  # type: ignore
     @commands.has_any_role(*getRoles(["mod", "team"]))
     async def delUserInvite(self, ctx: discord.Message, user_id: str, reason: str | None = None) -> None:
-        user: User = User.get_by_id(int(user_id))
+        user: User = User.get_or_create(id=int(user_id))[0]
         invites = Invite.select().where(Invite.user_id == user.id)
 
         allInvs = list(
