@@ -28,7 +28,7 @@ class LangSelector(discord.ui.View):
         self.add_item(sOption)  # type: ignore
 
     async def cb(self, interaction: discord.Interaction) -> None:
-        user: User = User.get_by_id(interaction.user.id)
+        user: User = User.get_or_create(id=interaction.user.id)
         selection: str = str(dict(interaction.data).get("values", None)[0])  # type:ignore
         user.language = selection
         user.save()
@@ -43,7 +43,7 @@ class LanguageSelectionCog(commands.Cog):
 
     @discord.slash_command(name="language", description="change your language")  # type: ignore
     async def langSelect(self, ctx: discord.Message) -> None:
-        user: User = User.get_by_id(ctx.author.id)
+        user: User = User.get_or_create(id=ctx.author.id)
         await ctx.respond(view=LangSelector(user), ephemeral=True)  # type: ignore
 
     @langSelect.error  # type: ignore
