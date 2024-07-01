@@ -1,8 +1,10 @@
 import os
 import discord
 from dotenv import load_dotenv  # type: ignore
+
 from lib.logsetup import init_log
-from lib.types.user import delUser
+
+from models import *
 
 init_log()
 load_dotenv()
@@ -34,9 +36,13 @@ async def on_ready() -> None:
 @bot.event
 async def on_member_remove(member: discord.Member) -> None:
     """deletes user file in ./data/userdata/ when leaving server"""
-    delUser(member.id)
+    User.delete_by_id(member.id)
 
 
 if __name__ == '__main__':
     print(os.getenv("TOKEN"))
+
+    BaseModel._meta.database.init(os.getenv("DB_PATH"), pragmas={'foreign_keys': 1})
+    BaseModel._meta.database.connect()
+
     bot.run(token=os.getenv("TOKEN"), reconnect=True)

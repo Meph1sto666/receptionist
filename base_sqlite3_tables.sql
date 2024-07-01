@@ -1,7 +1,6 @@
 create table if not exists user
 (
     id integer primary key,
-    invites integer,
     timezone integer,
     invite_permission boolean,
     allow_ping boolean,
