@@ -5,3 +5,4 @@ pytz
 deep-translator
 matplotlib
 peewee
+tzlocal

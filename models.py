@@ -28,9 +28,12 @@ class User(BaseModel):
         return f'<@{self.id}>'
 
     def is_limit_exceeded(self) -> bool:
-        invites = Invite.select().where(Invite.user_id == self.id).count()
-        return get_setting("max_invites") < invites
-
+        invites:int = Invite.select().where(Invite.user_id == self.id).count()
+        return get_setting("max_invites") <= invites
+    
+    def allowedPingTimes(self) -> list:
+        rules = PingRule.select().where(PingRule.user_id == self.id)
+        return list(rules)
 
 class Invite(BaseModel):
     id = TextField(primary_key=True)

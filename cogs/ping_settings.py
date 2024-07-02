@@ -10,6 +10,7 @@ from lib.roles import getRoles
 from models import User
 import logging
 from datetime import timezone, timedelta
+from models import *
 
 logger: logging.Logger = logging.getLogger('bot')
 
@@ -39,31 +40,22 @@ class PingSettingsView(discord.ui.View):
             placeholder='delete ping rules',
             min_values=1,
             max_values=1,
-            disabled=len(user.allowedPingTimes) < 1,
+            disabled=len(user.allowedPingTimes()) < 1,
             options=self.getRulesOptions()
-        )
-        self.timezoneSelect: discord.SelectMenu = discord.ui.Select(  # type: ignore
-            custom_id='timezone_select',
-            placeholder='Select your timezone. If none is selected UTC will be used!',
-            min_values=1,
-            max_values=1,
-            options=self.getTimezoneOptions()
         )
         self.toggleBtn.callback = self.toggle_allow_ping  # type: ignore
         self.addRuleBtn.callback = self.add_rule_modal  # type: ignore
         self.delRuleSelect.callback = self.del_rule_select  # type: ignore
-        self.timezoneSelect.callback = self.tz_select_cb  # type: ignore
-        for b in [self.toggleBtn, self.addRuleBtn, self.delRuleSelect, self.timezoneSelect]:  # type: ignore
+        for b in [self.toggleBtn, self.addRuleBtn, self.delRuleSelect]:#, self.timezoneSelect  # type: ignore
             self.add_item(b)  # type: ignore
 
     async def del_rule_select(self, interaction: Interaction) -> None:
         """delete rule callback for select menu"""
-        self.user.allowedPingTimes.remove(
-            list(filter(lambda x: x[3] == interaction.data.get('values', [])[0], self.user.allowedPingTimes))[
-                0])  # type: ignore
+        PingRule.delete_by_id(interaction.data.get('values', [])[0])
+        # self.user.allowedPingTimes().remove(list(filter(lambda x: x[3] == interaction.data.get('values', [])[0], self.user.allowedPingTimes()))[0])  # type: ignore
         self.delRuleSelect.options = self.getRulesOptions()
-        if len(self.user.allowedPingTimes) < 1: self.delRuleSelect.disabled = True
-        self.user.save()
+        if len(self.user.allowedPingTimes()) < 1: self.delRuleSelect.disabled = True
+        # self.user.save()
         await interaction.response.edit_message(embed=generateRulesEmbedded(self.user), view=self)
 
     def getRulesOptions(self) -> list[discord.SelectOption]:
@@ -71,19 +63,10 @@ class PingSettingsView(discord.ui.View):
         return [
             discord.SelectOption(
                 label=f'(test)// Rule {i}',
-                value=f'{self.user.allowedPingTimes[i][3]}',
-                description=f'[Allow: {self.user.allowedPingTimes[i][2]}] / {self.user.allowedPingTimes[i][0]} - {self.user.allowedPingTimes[i][1]}'
-            ) for i in range(len(self.user.allowedPingTimes))
-        ] if len(self.user.allowedPingTimes) > 0 else [discord.SelectOption(label='None')]
-
-    def getTimezoneOptions(self) -> list[discord.SelectOption]:
-        return [
-            discord.SelectOption(
-                label='UTC' + (str(i) if str(i).startswith('-') and i != 0 else f'+{i}'),
-                value=str(i),
-                default=i == self.utcOffset
-            ) for i in range(-12, 13)
-        ]
+                value=f'{self.user.allowedPingTimes()[i].id}',
+                description=f'[Allow: {self.user.allowedPingTimes()[i].start} - {self.user.allowedPingTimes()[i].end}'
+            ) for i in range(len(self.user.allowedPingTimes()))
+        ] if len(self.user.allowedPingTimes()) > 0 else [discord.SelectOption(label='None')]
 
     async def add_rule_modal(self, interaction: discord.Interaction) -> None:
         """callback for add rule modal button"""
@@ -91,19 +74,11 @@ class PingSettingsView(discord.ui.View):
         await interaction.response.send_modal(modal)
         await modal.wait()
 
-    # await interaction.response.edit_message(embed=generateRulesEmbedded(user), view=self)
-
     async def toggle_allow_ping(self, interaction: discord.Interaction) -> None:
         """callback to toggle if pinging the user is allowed"""
-        self.user.allowPing = not self.user.allowPing
-        self.toggleBtn.style = discord.ButtonStyle.red if self.user.allowPing else discord.ButtonStyle.green
+        self.user.allow_ping = not self.user.allow_ping
+        self.toggleBtn.style = discord.ButtonStyle.red if self.user.allow_ping else discord.ButtonStyle.green
         self.user.save()
-        await interaction.response.edit_message(embed=generateRulesEmbedded(self.user), view=self)
-
-    async def tz_select_cb(self, interaction: discord.Interaction) -> None:
-        """callback to set the users timezone"""
-        self.utcOffset = int(interaction.data.get('values', [])[0])
-        self.timezoneSelect.options = self.getTimezoneOptions()
         await interaction.response.edit_message(embed=generateRulesEmbedded(self.user), view=self)
 
 
@@ -123,7 +98,7 @@ class PingRuleModal(discord.ui.Modal):
         self.add_item(discord.ui.InputText(
             label='Rule end time',
             custom_id='rule_end_time',
-            placeholder='Time in 24h format ie. 21:30',
+            placeholder='Time in 24h format ie. 08:30',
             min_length=5,
             max_length=5,
             required=True
@@ -137,15 +112,18 @@ class PingRuleModal(discord.ui.Modal):
             comp: list[dict[str, str]] | None = c.get('components')
             timeString: str = comp[0].get('value')  # type: ignore
             if re.match(r'([0-1]\d|2[0-3]):[0-6]\d', timeString) is not None:
-                tz: timezone = timezone(timedelta(hours=self.parent.utcOffset))
+                # tz: timezone = timezone(timedelta(hours=self.parent.utcOffset))
                 now: dt = dt.now()
                 times.append(
-                    dt(now.year, now.month, now.day, *[int(ts) for ts in timeString.split(':')], tzinfo=tz).timetz())
+                    # dt(now.year, now.month, now.day, *[int(ts) for ts in timeString.split(':')], tzinfo=tz).timetz())
+                    dt(now.year, now.month, now.day, *[int(ts) for ts in timeString.split(':')], tzinfo=None).timetz())
             else:
                 await interaction.response.defer()
                 return
-        self.parent.user.allowedPingTimes.append((times[0], times[1], True, dt.now().isoformat()))
-        self.parent.user.save()
+        print(times)
+        pr:PingRule = PingRule.create(start=times[0], end=times[1], creation_time=dt.now().isoformat(), user_id=interaction.user.id)
+        pr.save(force_insert=False)
+        self.parent.delRuleSelect.disabled = False
         self.parent.delRuleSelect.options = self.parent.getRulesOptions()
         await interaction.response.edit_message(embed=generateRulesEmbedded(self.parent.user), view=self.parent)
 
@@ -174,10 +152,10 @@ def generateRulesEmbedded(user: User) -> discord.Embed:
         fields=[]
     )
     emb.set_footer(text=f'(test)// receive lobby pings: {user.allow_ping}')
-    for i in range(len(user.allowedPingTimes)):
+    for i in range(len(user.allowedPingTimes())):
         emb.add_field(
             name=f'(test)// Rule {i}',
-            value=f'start: [{user.allowedPingTimes[i][0].isoformat()}]\nend: [{user.allowedPingTimes[i][1].isoformat()}]',
+            value=f'start: [{user.allowedPingTimes()[i].start}]\nend: [{user.allowedPingTimes()[i].end}]',
             inline=True
         )
     return emb

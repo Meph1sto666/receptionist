@@ -21,19 +21,17 @@ class InviteCog(commands.Cog):
         inv: discord.Invite = await ctx.channel.create_invite(max_age=inviteSettings["period"] * (60 ** 2 * 24),
                                                               max_uses=inviteSettings["max_uses"],
                                                               unique=True)  # type: ignore
-        user: User
-        try:
-            user: User = User.get_or_create(id=ctx.author.id)[0]
-        except DoesNotExist:
-            # Create new user.
-            user = User(id=ctx.author.id, timezone=0, invite_permission=True, allow_ping=False,
-                        language="en_us")
-            user.save(force_insert=True)
+        # user: User
+        # try:
+        user: User = User.get_or_create(id=ctx.author.id)[0]
+        # except DoesNotExist:
+        #     # Create new user.
+        #     user = User(id=ctx.author.id, timezone=0, invite_permission=True, allow_ping=False,
+        #                 language="en_us")
+        #     user.save(force_insert=True)
 
         if user.is_limit_exceeded():
             raise InviteLimitExceeded("limit exceeded")
-
-        print()
 
         invite = Invite(
             id=inv.id,
@@ -43,14 +41,14 @@ class InviteCog(commands.Cog):
             url=inv.url,  # type: ignore
             user_id=user.id
         )
-        print(invite.__dict__)
         invite.save(force_insert=True)
-
         await ctx.respond(inv.url, ephemeral=True)  # type: ignore
 
     @cInv.error  # type: ignore
-    async def cInvErr(self, ctx: discord.Message, error: discord.ApplicationCommandError) -> None:
-        if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
+    async def cInvErr(self, ctx: discord.Message, error: discord.ApplicationCommandError|InviteLimitExceeded) -> None:
+        if isinstance(error, discord.ApplicationCommandInvokeError): # NOTE: for some reason it's not InviteLimitExceeded but this weird invoke error
+            await ctx.respond("Invite-limit exceeded.", ephemeral=True)  # type: ignore
+        elif isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
             await ctx.respond("You don't have the permissions to use this command.", ephemeral=True)  # type: ignore
         elif error.__cause__.__class__ == UserDoesNotExist:
             await ctx.respond("User does not exist")  # type: ignore
