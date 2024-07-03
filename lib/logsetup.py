@@ -45,7 +45,7 @@ def init_log():
         "loggers": {
             "discord": {
                 "handlers": ["file", "console"],
-                "level": "DEBUG",
+                "level": "INFO",
                 "propagate": False,
             },
             "bot": {
