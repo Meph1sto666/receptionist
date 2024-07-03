@@ -19,26 +19,22 @@ class PingCog(commands.Cog):
         self.bot: discord.Bot = bot
 
     @discord.slash_command(name="ping", description="pings for a lobby")  # type: ignore
-    @commands.cooldown(1, 3600, type=commands.cooldowns.BucketType.guild)
+    # @commands.cooldown(1, 3600, type=commands.cooldowns.BucketType.guild)
     @commands.has_any_role(*getRoles(["tester"]))
     async def lobbyPing(self, ctx: discord.Message, message: str) -> None:
         mentionStr: str = ''
         for usr in User.select():
             usr:User
-            # if not usr.allow_ping: continue
             do_ping:bool = usr.allow_ping and len(usr.allowedPingTimes()) == 0 # if no rules and pings allowed ping
             for ping_rule in usr.allowedPingTimes():
-                iso_start:time = time.fromisoformat(ping_rule.start)
-                iso_end:time = time.fromisoformat(ping_rule.end)
+                iso_utc:dt = dt.now(tz=pytz.utc)
                 tz_offset = timezone(timedelta(minutes=usr.timezone))
-
-                iso_utc = dt.now(tz=pytz.utc).timetz()
-                iso_start = iso_start.replace(tzinfo=tz_offset) # NOTE: Maybe need to add date info for rules including 00:00
-                iso_end = iso_end.replace(tzinfo=tz_offset)
-
+                iso_start:dt = dt.combine(dt.date(iso_utc), time.fromisoformat(ping_rule.start), tzinfo=tz_offset)
+                iso_end:dt = dt.combine(dt.date(iso_utc), time.fromisoformat(ping_rule.end), tzinfo=tz_offset)
+                if iso_start > iso_end:
+                    iso_end += timedelta(days=1)
                 # print(f"START={iso_start}\tUTC={iso_utc}\tEND={iso_end}\tDO_PING={iso_start < iso_utc < iso_end}")
                 do_ping = iso_start < iso_utc < iso_end
-
                 if do_ping:
                     break
             if not do_ping:
