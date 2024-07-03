@@ -33,7 +33,7 @@ def init_log():
                 "formatter": "console"
             },
             "file": {
-                "level": "INFO",
+                "level": "DEBUG",
                 "class": "logging.handlers.TimedRotatingFileHandler",
                 "formatter": "verbose",
                 "when": "midnight",
@@ -43,12 +43,12 @@ def init_log():
             }
         },
         "loggers": {
-            "bot": {
-                "handlers": ["file"],
-                "level": "INFO",
+            "discord": {
+                "handlers": ["file", "console"],
+                "level": "DEBUG",
                 "propagate": False,
             },
-            "discord": {
+            "bot": {
                 "handlers": ["file", "console"],
                 "level": "INFO",
                 "propagate": False,

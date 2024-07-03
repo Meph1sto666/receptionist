@@ -60,7 +60,6 @@ class TimezoneCog(commands.Cog):
 
 	@setTz.error  # type: ignore
 	async def setTzErr(self, ctx: discord.Message, error: discord.ApplicationCommandError) -> None:
-		raise
 		if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
 			await ctx.respond("You don't have the permissions to use this command.", ephemeral=True)  # type: ignore
 		elif error.__cause__.__class__ == UserDoesNotExist:

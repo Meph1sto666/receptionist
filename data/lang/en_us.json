@@ -70,7 +70,7 @@
     "errcode_-98_option_4": "Ensure the game files aren't in a system folder. Make sure they're in a separate folder",
     "errcode_-98_option_5": "If the firewall exceptions on the AV aren't enough, add exceptions to the router too.",
 
-    "ge_de": "German",
+    "de_de": "German",
     "en_us": "English (US)",
     "es_es": "Spanish",
     "faq_title": "Frequently asked questions",
