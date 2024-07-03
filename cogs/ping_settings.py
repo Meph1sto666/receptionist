@@ -120,7 +120,7 @@ class PingRuleModal(discord.ui.Modal):
             else:
                 await interaction.response.defer()
                 return
-        print(times)
+        # print(times)
         pr:PingRule = PingRule.create(start=times[0], end=times[1], creation_time=dt.now().isoformat(), user_id=interaction.user.id)
         pr.save(force_insert=False)
         self.parent.delRuleSelect.disabled = False
