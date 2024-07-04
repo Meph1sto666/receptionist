@@ -1,8 +1,8 @@
 import deep_translator # type: ignore
 import json
 
-of = input("origin file (default: './en_us')> ")
-if len(of) < 1: of = "./en_us.json"
+of = input("origin file (default: './en_en')> ")
+if len(of) < 1: of = "./en_en.json"
 tl = input("target language> ")
 fn = input("file name> ")
 

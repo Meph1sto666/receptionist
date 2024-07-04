@@ -4,6 +4,8 @@ import discord
 from discord.ext import commands, tasks
 from discord.ui.item import Item
 from lib.roles import getRoles
+from lib.lang import Lang
+from models import User
 
 class SetActivity(commands.Cog):
 	def __init__(self, bot:discord.Bot) -> None:
@@ -51,10 +53,11 @@ class SetActivity(commands.Cog):
 
 	@setActivity.error # type: ignore
 	async def cInvErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
+		lang:Lang = Lang(User.get_or_create(id=ctx.author.id)[0].language)
 		if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
-			await ctx.respond("You don't have the permissions to use this command.", ephemeral=True) # type: ignore
+			await ctx.respond(lang.translate("missing_command_permission"), ephemeral=True)  # type: ignore
 		elif error.__cause__.__class__ == FileNotFoundError:
-			await ctx.respond("User does not exist") # type: ignore
+			await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
 		else:
 			await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
 

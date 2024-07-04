@@ -5,13 +5,13 @@ from lib.settings import sPath, set_setting
 from lib.lang import Lang
 import json
 from models import User
-
+from lib.types.errors import UserDoesNotExist
 
 class InviteSettingsView(discord.ui.View):
     # TODO: handle lang text to Lang obj conversion
-    def __init__(self, *items: discord.ui.Item, timeout: float | None = 180, disable_on_timeout: bool = False,
-                 lang: Lang) -> None:  # type: ignore
+    def __init__(self, *items: discord.ui.Item, timeout: float | None = 180, disable_on_timeout: bool = False, lang: Lang) -> None:  # type: ignore
         super().__init__(*items, timeout=timeout, disable_on_timeout=disable_on_timeout)  # type: ignore
+        self.lang = lang
         options: list[discord.ui.Select[discord.SelectOption]] = [  # type: ignore
             discord.ui.Select(  # type: ignore
                 custom_id="period",
@@ -54,7 +54,7 @@ class InviteSettingsView(discord.ui.View):
     async def cb(self, interaction: discord.Interaction) -> None:
         # print(interaction.data)
         set_setting(interaction.data["custom_id"], int(interaction.data["values"][0]))  # type: ignore
-        await interaction.response.edit_message(embed=createSettingsEmbed())
+        await interaction.response.edit_message(embed=createSettingsEmbed(self.lang))
 
 
 class InviteSettings(commands.Cog):
@@ -65,22 +65,26 @@ class InviteSettings(commands.Cog):
     @discord.slash_command(name="invite_settings", description="modify settings for invites")  # type: ignore
     @commands.has_any_role(*getRoles(["mod", "team"]))
     async def cInvSettings(self, ctx: discord.Message) -> None:
-        await ctx.respond(embed=createSettingsEmbed(), view=InviteSettingsView(lang=User.get_by_id(ctx.author.id).language),
+        lang:Lang = Lang(User.get_or_create(id=ctx.author.id)[0].language)
+        await ctx.respond(embed=createSettingsEmbed(lang), view=InviteSettingsView(lang=lang),
                           ephemeral=True)  # type: ignore
 
     @cInvSettings.error  # type: ignore
     async def cInvSettingsErr(self, ctx: discord.Message, error: discord.ApplicationCommandError) -> None:
+        lang:Lang = Lang(User.get_or_create(id=ctx.author.id)[0].language)
         if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
-            await ctx.respond("You don't have the permissions to use this command.", ephemeral=True)  # type: ignore
+            await ctx.respond(lang.translate("missing_command_permission"), ephemeral=True)  # type: ignore
+        elif error.__cause__.__class__ == UserDoesNotExist:
+            await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
         else:
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore
 
 
-def createSettingsEmbed() -> discord.Embed:
+def createSettingsEmbed(lang:Lang) -> discord.Embed:
     data: dict[str, int] = dict(json.load(open(sPath, "r", encoding="utf-8")))
     embed = discord.Embed(
         color=discord.Color.from_rgb(255, 255, 255),
-        title="Options",
+        title=lang.translate("options"),
         fields=[
             discord.EmbedField(
                 name=d,

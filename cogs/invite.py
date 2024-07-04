@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from peewee import DoesNotExist
-
+from lib.lang import Lang
 from lib.roles import getRoles
 from models import Invite, User
 from lib.types.errors import InviteLimitExceeded, UserDoesNotExist
@@ -46,12 +46,13 @@ class InviteCog(commands.Cog):
 
     @cInv.error  # type: ignore
     async def cInvErr(self, ctx: discord.Message, error: discord.ApplicationCommandError|InviteLimitExceeded) -> None:
+        lang:Lang = Lang(User.get_or_create(id=ctx.author.id)[0].language)
         if isinstance(error, discord.ApplicationCommandInvokeError): # NOTE: for some reason it's not InviteLimitExceeded but this weird invoke error
-            await ctx.respond("Invite-limit exceeded.", ephemeral=True)  # type: ignore
+            await ctx.respond("invite_limit_exceeded.", ephemeral=True)  # type: ignore
         elif isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
-            await ctx.respond("You don't have the permissions to use this command.", ephemeral=True)  # type: ignore
+            await ctx.respond(lang.translate("missing_command_permission"), ephemeral=True)  # type: ignore
         elif error.__cause__.__class__ == UserDoesNotExist:
-            await ctx.respond("User does not exist")  # type: ignore
+            await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
         else:
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore
 

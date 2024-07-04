@@ -20,9 +20,9 @@ class LauncherCog(commands.Cog):
     @getLauncher.error # type: ignore
     async def getGuideErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:
         if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
-            await ctx.respond("You don't have the permissions to use this command.", ephemeral=True) # type: ignore
+            await ctx.respond(lang.translate("missing_command_permission"), ephemeral=True)  # type: ignore
         elif error.__cause__.__class__ == UserDoesNotExist:
-            await ctx.respond("User does not exist") # type: ignore
+            await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
         else:
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
         

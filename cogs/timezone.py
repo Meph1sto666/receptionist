@@ -7,6 +7,7 @@ from models import User
 from lib.types.errors import UserDoesNotExist
 import logging
 from discord.ui import Item
+from lib.lang import Lang
 
 logger: logging.Logger = logging.getLogger('bot')
 
@@ -21,7 +22,7 @@ class TimezoneSettingView(discord.ui.View):
 		self.user: User = user
 		self.timezoneSelect: discord.SelectMenu = discord.ui.Select(  # type: ignore
 			custom_id='timezone_select',
-			placeholder='Select your timezone. If none is selected UTC will be used!',
+			placeholder=Lang(user.language).translate('timezone_select_placeholder'),
 			min_values=1,
 			max_values=1,
 			options=self.getTimezoneOptions()
@@ -56,14 +57,15 @@ class TimezoneCog(commands.Cog):
 	@discord.slash_command(name="timezone", description="Set or edit your timezone")  # type: ignore
 	@commands.has_any_role(*getRoles(["tester"]))
 	async def setTz(self, ctx: discord.Message) -> None:
-		await ctx.respond("set your Timezone", view=TimezoneSettingView(User.get_or_create(id=ctx.author.id)[0]), ephemeral=True)  # type: ignore
+		usr:User = User.get_or_create(id=ctx.author.id)[0]
+		await ctx.respond(Lang(usr.language).translate("timezone_command_msg"), view=TimezoneSettingView(usr), ephemeral=True)  # type: ignore
 
 	@setTz.error  # type: ignore
 	async def setTzErr(self, ctx: discord.Message, error: discord.ApplicationCommandError) -> None:
 		if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
-			await ctx.respond("You don't have the permissions to use this command.", ephemeral=True)  # type: ignore
+			await ctx.respond(lang.translate("missing_command_permission"), ephemeral=True)  # type: ignore
 		elif error.__cause__.__class__ == UserDoesNotExist:
-			await ctx.respond("User does not exist")  # type: ignore
+			await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
 		else:
 			logger.error(error, stack_info=True)
 			await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore
