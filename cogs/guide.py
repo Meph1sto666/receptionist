@@ -22,7 +22,7 @@ class GuideCmdCog(commands.Cog):
         guidePath: str = f'./data/files/gitsfaemusgv21_{language.name}.pdf'
         await ctx.respond(
             "https://docs.google.com/document/d/e/2PACX-1vTi0s72Cj-ExFSzDxO8lLtzR83zbeMuhlq_1NVQD27BM2B8OeZYellszk7rhdSQkV4jPu-b3m3giXHf/pub",
-            file=discord.File(f'./data/files/gitsfaemusgv21_en_us.pdf' if not os.path.exists(
+            file=discord.File(f'./data/files/gitsfaemusgv21_en_en.pdf' if not os.path.exists(
                 guidePath) else guidePath))  # type: ignore
 
     @discord.slash_command(name="rtfm", description="read the fucking manual (same as /guide)", )  # type: ignore
@@ -34,7 +34,7 @@ class GuideCmdCog(commands.Cog):
         guidePath: str = f'./data/files/gitsfaemusgv21_{language.name}.pdf'
         await ctx.respond(
             "https://docs.google.com/document/d/e/2PACX-1vTi0s72Cj-ExFSzDxO8lLtzR83zbeMuhlq_1NVQD27BM2B8OeZYellszk7rhdSQkV4jPu-b3m3giXHf/pub",
-            file=discord.File(f'./data/files/gitsfaemusgv21_en_us.pdf' if not os.path.exists(
+            file=discord.File(f'./data/files/gitsfaemusgv21_en_en.pdf' if not os.path.exists(
                 guidePath) else guidePath))  # type: ignore
 
     @getGuide.error  # type: ignore

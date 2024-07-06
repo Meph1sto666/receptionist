@@ -5,7 +5,7 @@ LANG_FOLDER:str = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + 
 LANG_FILE_EXT = ".json";
 
 class Lang:
-	def __init__(self, l:str="en_us") -> None:
+	def __init__(self, l:str="en_en") -> None:
 		self.name:peewee.TextField|str = l;
 		# self.langData:dict[str, str] = json.load(open(LANG_FOLDER + self.name + LANG_FILE_EXT, "r", encoding="utf-8"));
 	

@@ -21,7 +21,7 @@ class User(BaseModel):
     timezone = IntegerField(default=0)
     invite_permission = BooleanField(default=True)
     allow_ping = BooleanField(default=False)
-    language = TextField(default="en_us")
+    language = TextField(default="en_en")
 
     def get_mention_str(self) -> str:
         """returns the user mention string <@discord_user_id>"""
