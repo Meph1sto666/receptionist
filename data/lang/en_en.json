@@ -70,9 +70,9 @@
     "errcode_-98_option_4": "Ensure the game files aren't in a system folder. Make sure they're in a separate folder",
     "errcode_-98_option_5": "If the firewall exceptions on the AV aren't enough, add exceptions to the router too.",
 
-    "de_de": "German",
+    "de_de": "German (MTL)",
     "en_en": "English",
-    "es_es": "Spanish",
+    "es_es": "Spanish (MTL)",
     "faq_title": "Frequently asked questions",
     "faq_description": "A list of the questions often asked by players.",
     "missing_command_permission": "You don't have the permissions to use this command.",
@@ -93,7 +93,7 @@
     "ping_rule_modal_start_example": "Time in 24h format with leading zeros ie. {hh}:{mm}",
     "ping_rule_modal_end_example": "Time in 24h format with leading zeros ie. {hh}:{mm}",
     "ping_settings_embed_title": "Your ping-rules",
-    "ping_settings_embed_desc": "Here you can enable or disable pings.\n- Enabling pings will allow pings the entire day\n- Disabling pings will also disable notifications during whitelisted hours.\n- Setting rules will only take effect when pings are enabled and disable pings during the non-covered time frame\n",
+    "ping_settings_embed_desc": "### Make sure that you have set your timezone with the `/timezone` command before you continue\nHere you can enable or disable pings.\n- Enabling pings will allow pings the entire day\n- Disabling pings will also disable notifications during whitelisted hours.\n- Setting rules will only take effect when pings are enabled and disable pings during the non-covered time frame\n",
     "ping_settings_embed_footer": "receive lobby pings: {allow_pings}",
     "ping_settings_embed_field_value": "From {start_time} to {end_time}",
     "fr_fr": "French"

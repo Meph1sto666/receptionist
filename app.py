@@ -40,7 +40,7 @@ async def on_member_remove(member: discord.Member) -> None:
 
 
 if __name__ == '__main__':
-    # db = peewee.SqliteDatabase(os.getenv("DB_PATH"), pragmas={'foreign_keys': 1})
+    db = BaseModel._meta.database
     db.init(database=os.getenv("DB_PATH"), pragmas={'foreign_keys': 1})
     db.connect()
     db.create_tables([User, Invite, PingRule])

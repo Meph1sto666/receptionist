@@ -61,7 +61,7 @@ class SetActivity(commands.Cog):
 		elif error.__cause__.__class__ == FileNotFoundError:
 			await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
 		else:
-            logger.error(error, stack_info=True)
+			logger.error(error, stack_info=True)
 			await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
 
 
