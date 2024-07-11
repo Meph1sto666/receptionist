@@ -48,7 +48,7 @@ class RoleChartCog(commands.Cog):
 			f"./data/temp/{fname}.png",
        		filename=fname + ".png"
 		)
-		await ctx.respond(file=file) # type: ignore
+		await ctx.respond(file=file, ephemeral=True) # type: ignore
 		os.remove(f"./data/temp/{fname}.png")
 
 	@roleChart.error # type: ignore
@@ -56,7 +56,7 @@ class RoleChartCog(commands.Cog):
 		if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
 			await ctx.respond("You don't have the permissions to use this command.", ephemeral=True) # type: ignore
 		elif error.__cause__.__class__ == UserDoesNotExist:
-			await ctx.respond("User does not exist") # type: ignore
+			await ctx.respond("User does not exist", ephemeral=True) # type: ignore
 		else:
 			logger.error(error, stack_info=True)
 			await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
