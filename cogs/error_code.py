@@ -48,9 +48,9 @@ class ErrorCodeCog(commands.Cog):
                     ) for n in range(len(codeData["options"]))
                 ]
             )
-            await ctx.respond(embed=emb)  # type: ignore
+            await ctx.respond(embed=emb, ephemeral=True)  # type: ignore
         else:
-            await ctx.respond(embed=errorListEmb(errorData, user))  # type: ignore
+            await ctx.respond(embed=errorListEmb(errorData, user), ephemeral=True)  # type: ignore
 
     @errorCode.error  # type: ignore
     async def errorCodeErr(self, ctx: discord.Message, error: discord.ApplicationCommandError) -> None:
@@ -60,9 +60,11 @@ class ErrorCodeCog(commands.Cog):
             errorData = json.load(open("./data/errorcodes.json", encoding="utf-8"))
             language = Lang()
             language.loadLanguage(user.language)
-            await ctx.respond(language.translate("err_cmd_errmsg_not_exist").format(ec=error.__cause__.args[0]),
-                              embed=errorListEmb(errorData,
-                                                 user))  # type: ignore // ec for error code (else translated by mtl raising error)
+            await ctx.respond(
+                language.translate("err_cmd_errmsg_not_exist").format(ec=error.__cause__.args[0]),
+                embed=errorListEmb(errorData, user),
+                ephemeral=True
+            )  # type: ignore // ec for error code (else translated by mtl raising error)
         else:
             logger.error(error, stack_info=True)
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore

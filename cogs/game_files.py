@@ -12,7 +12,7 @@ class GameFilesCmdCog(commands.Cog):
     @discord.slash_command(name="game_files", description="get a URL to the game files") # type: ignore
     @commands.has_any_role(*getRoles(["tester"]))
     async def getGameFiles(self, ctx:discord.Message) -> None:
-        await ctx.respond("https://drive.google.com/file/d/1n47SAqOrjZdDclKytGfRM0YmU4hQkTrC/view") # type: ignore
+        await ctx.respond("https://drive.google.com/file/d/1n47SAqOrjZdDclKytGfRM0YmU4hQkTrC/view", ephemeral=True) # type: ignore
         
     @getGameFiles.error # type: ignore
     async def getGameFilesErr(self, ctx:discord.Message, error:discord.ApplicationCommandError) -> None:

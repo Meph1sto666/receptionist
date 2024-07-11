@@ -28,7 +28,7 @@ class InviteClear(commands.Cog):
             invite.delete_by_id(invite.id)
         language = Lang()
         language.loadLanguage(user.language)
-        await ctx.respond(language.translate("deleted_n_invites").format(n=prevLen))  # type: ignore
+        await ctx.respond(language.translate("deleted_n_invites").format(n=prevLen), ephemeral=True)  # type: ignore
 
     @delUserInvite.error  # type: ignore
     async def cInvErr(self, ctx: discord.Message, error: discord.ApplicationCommandError) -> None:
@@ -36,7 +36,7 @@ class InviteClear(commands.Cog):
         if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
             await ctx.respond(lang.translate("missing_command_permission"), ephemeral=True)  # type: ignore
         elif error.__cause__.__class__ == FileNotFoundError:
-            await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
+            await ctx.respond(lang.translate("user_does_not_exist"), ephemeral=True)  # type: ignore
         else:
             logger.error(error, stack_info=True)
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore

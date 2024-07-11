@@ -31,7 +31,7 @@ class ListInvites(commands.Cog):
 		if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
 			await ctx.respond(lang.translate("missing_command_permission"), ephemeral=True)  # type: ignore
 		elif error.__cause__.__class__ == UserDoesNotExist:
-			await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
+			await ctx.respond(lang.translate("user_does_not_exist"), ephemeral=True)  # type: ignore
 		else:
 			logger.error(error, stack_info=True)
 			await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore
