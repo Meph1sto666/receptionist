@@ -13,7 +13,7 @@ class LauncherCog(commands.Cog):
     @discord.slash_command(name="launcher", description="get the launcher") # type: ignore
     @commands.has_any_role(*getRoles(["tester"]))
     async def getLauncher(self, ctx:discord.Message) -> None:
-        await ctx.defer() # type: ignore
+        await ctx.defer(ephemeral=True) # type: ignore
         await ctx.respond(
             file=discord.File( # type: ignore
 			    "./data/files/fa-emu-launcher-v206.zip",
