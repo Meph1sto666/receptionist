@@ -6,6 +6,8 @@ from lib.lang import Lang
 import json
 from models import User
 from lib.types.errors import UserDoesNotExist
+import logging
+logger: logging.Logger = logging.getLogger('bot')
 
 class InviteSettingsView(discord.ui.View):
     # TODO: handle lang text to Lang obj conversion
@@ -77,6 +79,7 @@ class InviteSettings(commands.Cog):
         elif error.__cause__.__class__ == UserDoesNotExist:
             await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
         else:
+            logger.error(error, stack_info=True)
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore
 
 

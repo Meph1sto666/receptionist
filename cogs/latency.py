@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
 from lib.types.errors import *
-
+import logging
+logger: logging.Logger = logging.getLogger('bot')
 
 class LatencyCog(commands.Cog):
     def __init__(self, bot: discord.Bot) -> None:
@@ -20,6 +21,7 @@ class LatencyCog(commands.Cog):
         elif error.__cause__.__class__ == UserDoesNotExist:
             await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
         else:
+            logger.error(error, stack_info=True)
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore
 
 

@@ -6,7 +6,8 @@ from lib.roles import getRoles
 from models import Invite, User
 from lib.types.errors import InviteLimitExceeded, UserDoesNotExist
 import json
-
+import logging
+logger: logging.Logger = logging.getLogger('bot')
 
 class InviteCog(commands.Cog):
     def __init__(self, bot: discord.Bot) -> None:
@@ -54,6 +55,7 @@ class InviteCog(commands.Cog):
         elif error.__cause__.__class__ == UserDoesNotExist:
             await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
         else:
+            logger.error(error, stack_info=True)
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore
 
 

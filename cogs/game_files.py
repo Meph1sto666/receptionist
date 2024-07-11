@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 from lib.roles import getRoles
+import logging
+logger: logging.Logger = logging.getLogger('bot')
 
 class GameFilesCmdCog(commands.Cog):
     def __init__(self, bot:discord.Bot) -> None:
@@ -17,6 +19,7 @@ class GameFilesCmdCog(commands.Cog):
         if isinstance(error, (commands.MissingRole, commands.MissingAnyRole)):
             await ctx.respond(lang.translate("missing_command_permission"), ephemeral=True)  # type: ignore
         else:
+            logger.error(error, stack_info=True)
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
 
 def setup(bot:discord.Bot) -> None:

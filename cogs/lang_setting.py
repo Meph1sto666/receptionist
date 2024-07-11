@@ -4,7 +4,8 @@ from discord.ui.item import Item
 from lib.types.errors import UserDoesNotExist
 from models import User
 from lib.lang import getAvialLangs, Lang
-
+import logging
+logger: logging.Logger = logging.getLogger('bot')
 
 class LangSelector(discord.ui.View):
     def __init__(self, user: User, *items: list[Item], timeout: float | None = 180,
@@ -54,6 +55,7 @@ class LanguageSelectionCog(commands.Cog):
         elif error.__cause__.__class__ == UserDoesNotExist:
             await ctx.respond(lang.translate("user_does_not_exist"))  # type: ignore
         else:
+            logger.error(error, stack_info=True)
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore
 
 

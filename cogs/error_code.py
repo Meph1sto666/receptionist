@@ -1,12 +1,12 @@
 import typing
 import discord
 from discord.ext import commands
-
 from lib.lang import Lang
 from lib.roles import getRoles
 from models import User
 import json
-
+import logging
+logger: logging.Logger = logging.getLogger('bot')
 
 def errorListEmb(errorData: typing.Any, user: User) -> discord.Embed:
     language = Lang()
@@ -64,6 +64,7 @@ class ErrorCodeCog(commands.Cog):
                               embed=errorListEmb(errorData,
                                                  user))  # type: ignore // ec for error code (else translated by mtl raising error)
         else:
+            logger.error(error, stack_info=True)
             await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True)  # type: ignore
 
 

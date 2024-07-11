@@ -7,6 +7,8 @@ from matplotlib.text import Text
 from lib.roles import getRoles
 from lib.types.errors import UserDoesNotExist
 import matplotlib.pyplot as plt
+import logging
+logger: logging.Logger = logging.getLogger('bot')
 
 class RoleChartCog(commands.Cog):
 	def __init__(self, bot:discord.Bot) -> None:
@@ -56,6 +58,7 @@ class RoleChartCog(commands.Cog):
 		elif error.__cause__.__class__ == UserDoesNotExist:
 			await ctx.respond("User does not exist") # type: ignore
 		else:
+			logger.error(error, stack_info=True)
 			await ctx.respond(open("./data/errormessage.txt", encoding="utf-8").read(), ephemeral=True) # type: ignore
 
 def setup(bot:discord.Bot) -> None:
