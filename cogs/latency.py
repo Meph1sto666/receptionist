@@ -12,7 +12,7 @@ class LatencyCog(commands.Cog):
     @discord.slash_command(name="latency", description="check bot latency")  # type: ignore
     async def cInv(self, ctx: discord.Message) -> None:
         await ctx.respond(
-            f"Pong: *{round(self.bot.latency * 1000, 3)}*ms delay. [Rate limited: {self.bot.is_ws_ratelimited()}]")  # type: ignore
+            f"Pong: *{round(self.bot.latency * 1000, 3)}*ms delay. [Rate limited: {self.bot.is_ws_ratelimited()}]", ephemeral=True)  # type: ignore
 
     @cInv.error  # type: ignore
     async def cInvErr(self, ctx: discord.Message, error: discord.ApplicationCommandError) -> None:
